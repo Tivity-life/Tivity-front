@@ -10,7 +10,7 @@
       <a
         href="sign-in/index.html"
         role="button"
-        class="btn btn-outline-primary rainbow-1"
+        class="btn btn-outline-primary"
       >
         Effettua la registrazione
       </a>
