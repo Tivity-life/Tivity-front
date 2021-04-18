@@ -13,7 +13,7 @@
         <a
           href="login/index.html"
           role="button"
-          class="btn btn-outline-primary ms-2 rainbow-1"
+          class="btn btn-outline-primary ms-2"
         >
           Accedi
         </a>
