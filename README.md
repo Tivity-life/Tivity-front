@@ -10,7 +10,7 @@ npm install
 npm run serve
 ```
 
-### Compiles and hot-reloads for development
+### In case of error in npm run serve
 ```
 npm i @vue/cli-service
 ```
