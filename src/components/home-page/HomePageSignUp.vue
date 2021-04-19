@@ -7,8 +7,8 @@
         Semplifica la tua vita
       </p>
       <br />
-      <a
-        href="sign-in/index.html"
+      <a 
+        href= "../sign-in/index.html"
         role="button"
         class="btn btn-outline-primary"
       >
