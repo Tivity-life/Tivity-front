@@ -10,6 +10,11 @@ npm install
 npm run serve
 ```
 
+### In case of error in npm run serve
+```
+npm i @vue/cli-service
+```
+
 ### Compiles and minifies for production
 ```
 npm run build
