@@ -1,6 +1,6 @@
 <template>
  <section class="signup">
-                <div class="container">
+                <div class="container mt-5">
                     <div class="signup-content">
                             <div class="signup-form">
                                 <h1 class="form-title">Welcome!</h1>
@@ -24,7 +24,7 @@
                                     </div>
                                     <br>
                                     Hai già un account? 
-                                    <a href= "#">Accedi</a>
+                                 <router-link class="" to="/login">accedi</router-link>
                                     <br>
                                     <br>
                                 
@@ -32,7 +32,7 @@
                                 </form>
                         </div>
                     <div class="signup-image">
-                        <figure><img src="man-working-vector.jpg" alt="sign up image"></figure>
+                        <figure><img src="./man-working-vector.jpg" alt="sign up image"></figure>
                     </div>
                 </div>
                 </div>

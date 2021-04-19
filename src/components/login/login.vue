@@ -1,7 +1,7 @@
 <!--Pagina di Login-->
 <template>
        <section class="signup">
-                <div class="container">
+                <div class="container  mt-5">
                     <div class="signup-content">
                             <div class="signup-form">
                                 <h1 class="form-title">Bentornato!</h1>
@@ -25,7 +25,7 @@
                                 </form>
                         </div>
                     <div class="signup-image">
-                        <figure><img src="assets/logo.png" alt="sign up image"></figure>
+                        <figure><img src="../../assets/logo.jpeg" alt="sign up image"></figure>
                     </div>
                 </div>
                 </div>

@@ -10,6 +10,11 @@ npm install
 npm run serve
 ```
 
+### Compiles and hot-reloads for development
+```
+npm i @vue/cli-service
+```
+
 ### Compiles and minifies for production
 ```
 npm run build
