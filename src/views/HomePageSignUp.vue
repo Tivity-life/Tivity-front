@@ -50,17 +50,16 @@
   </div>
 
 </section>
-<section>
-  <br>
-    <div class= "text-center">
-      <h3>Perchè essere produttivi</h3><br>
-      <div class= "col-md-12 text-center">
-      <img src="../assets/desk.png" width="350"/>
-      </div>
 
-    </div>
-  
+<section><br>
+    <div class= "text-center">
+        <h3>Perchè <strong>essere produttivi</strong> 💪</h3>
+        <img src= "../assets/study.jpg" width="250" alt= "study">&nbsp;&nbsp;&nbsp;
+        <img src= "../assets/study2.jpg" width= "250" alt= "study2">&nbsp;&nbsp;&nbsp;
+        <img src= "../assets/study3.jpg" width= "250">
+      </div>
 </section>
+
 <br>
 <footer>This website is designed by Ion Drumea, Chiara Giacanelli and Damiano Gambitta ©Tivity.me</footer>
 </template>
@@ -102,7 +101,7 @@ section:nth-of-type(odd) {
 }
 
 section:nth-of-type(even) {
-  background-color: rgba(238, 238, 238, 0.884);
+  background-color: mocassin;
   color: rgb(0, 0, 0);
 }
 
@@ -136,8 +135,13 @@ footer {
 }
 
 #nav a.router-link-exact-active {
-  color: #1d1b1b;
+  color: #1d1c1b;
 
+}
+.wrapper {
+    margin: 0 auto;
+    padding: 0 10px;
+    width: 940px;
 }
 
 

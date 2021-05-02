@@ -8,7 +8,7 @@
                 </div>
                 Usa questa pagina per appuntarti le cose che non vuoi dimenticarti.
                 <br>
-                Scrivi ciò che vuoi fare oggi e clicca Enter per aggiungere un task<br> alla tua lista di cose da fare.<br>
+                Scrivi ciò che vuoi fare oggi e clicca <em>Enter</em> per aggiungere un task<br> alla tua lista di cose da fare.<br>
                 Se vuoi modificare o eliminare un task, basta che clicchi sulle icone
                 a fianco!
                 <br><br>
