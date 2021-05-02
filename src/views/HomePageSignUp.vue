@@ -40,15 +40,26 @@
       </div>
     </div>
 </section>
-<section><br>
-  <div class= "text-center">
-   <h1> What to expect</h1><br>
-   <div class= "col-md-12 text-center">
-   <img src="../assets/desk.png" width="350"/>
-   </div>
+<section>
 
+<div id= "nav">
+  <router-link to= "/">✔️ To Do</router-link> |
+  <router-link to= "/">🌎 La tua mappa</router-link> |
+  <router-link to= "/">🗓️ Calendario</router-link> |
+  <router-link to= "/">🕮 Il tuo habit tracker</router-link>
   </div>
 
+</section>
+<section>
+  <br>
+    <div class= "text-center">
+      <h3>Perchè essere produttivi</h3><br>
+      <div class= "col-md-12 text-center">
+      <img src="../assets/desk.png" width="350"/>
+      </div>
+
+    </div>
+  
 </section>
 <br>
 <footer>This website is designed by Ion Drumea, Chiara Giacanelli and Damiano Gambitta ©Tivity.me</footer>
@@ -112,6 +123,22 @@ footer {
   justify-content: space-around;
 }
 
+#nav {
+  -webkit-font-smoothing: antialised;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  padding: 30px;
+  font-size: medium;
+}
+
+#nav a {
+  color: #000000;
+}
+
+#nav a.router-link-exact-active {
+  color: #1d1b1b;
+
+}
 
 
 </style>
