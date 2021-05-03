@@ -1,9 +1,9 @@
 <template>
-  <div :class="[menuVisibility ? 'visible' : 'd-none','container mt-5']">
-    
-    <Menu />
-      <router-view></router-view>
-
+  <div :class="[menuVisibility ? 'container mt-5' : '', '']">
+      <div :class="[menuVisibility ? '' : 'd-none', '']">
+        <Menu/>
+      </div>
+    <router-view @disable-menu='disableMenu' @active-menu='activeMenu'></router-view>
   </div>
 </template>
 
@@ -12,10 +12,19 @@ import Menu from "../components/navigationMenu/navigationMenu";
 
 export default {
   components: { Menu },
+  methods: {
+      activeMenu() {
+          this.menuVisibility = true
+      },
+      disableMenu() {
+          this.menuVisibility = false
+      }
+  },
   data() {
     return {
-      menuVisibility: true,
+      menuVisibility: false,
     };
-  },
+  },  emits: ["start-app"],
+
 };
 </script>

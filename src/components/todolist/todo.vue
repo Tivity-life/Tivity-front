@@ -184,6 +184,10 @@ export default {
       this.todos.splice(i, 1);
     },
   },
+  emits: ["active-menu"],
+   created() {
+    this.$emit('active-menu');
+  },
 
   markAsDoneOrUndone(todo) {
     todo.done = !todo.done;

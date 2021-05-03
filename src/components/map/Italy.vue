@@ -97,17 +97,6 @@
       </div>
     </div>
   </div>
-  <p>
-    addingPost {{ postsManager.addingPost }} postActive
-    {{ postsManager.postActive }}
-    <br />
-    regionLeft {{ postsManager.regionLeft }} regionBottom
-    {{ postsManager.regionBottom }}
-    <br />
-    aaa {{ postsManager.regionActive }}
-    <br />
-    aaa {{ map[postsManager.regionActive] }}
-  </p>
 </template>
 
 <script>
@@ -136,11 +125,7 @@ export default {
         lazio: {
           name: "Lazio",
           posts: [{ id: 1, text: "Carbonara!!" }],
-        },
-        pippo: {
-          name: "pippo",
-          posts: [{ id: 1, text: "Carbonara!!" }],
-        },
+        }
       },
       seen: true,
     };
@@ -168,8 +153,6 @@ export default {
     },
     deleteTask(id) {
       const region = this.map[this.postsManager.regionActive];
-      console.log(region);
-      console.log(this.postsManager.regionActive);
       if (confirm("Are you sure?")) {
         for (let i = 0; i < region.posts.length; i++) {
           if (region.posts[i].id == id) {
@@ -185,10 +168,9 @@ export default {
   components: {
     Posts,
   },
-
-  created() {
-    //Call to backend
-    // this.map.sardegna.posts =
+  emits: ["active-menu"],
+   created() {
+    this.$emit('active-menu');
   },
 };
 </script>

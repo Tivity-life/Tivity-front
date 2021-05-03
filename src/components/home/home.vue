@@ -58,6 +58,10 @@
 <script>
 export default {
   name: "Home",
+  emits: ["disable-menu"],
+   created() {
+    this.$emit('disable-menu');
+  },
 };
 </script>
 

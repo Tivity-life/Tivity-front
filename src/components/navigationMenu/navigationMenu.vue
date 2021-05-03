@@ -1,5 +1,6 @@
 <template>
   <div id="nav">
+    <router-link to="/">Home</router-link> |
     <router-link to="/to-do">✔️ To Do</router-link> |
     <router-link to="/map">🌎 La tua mappa</router-link> |
     <router-link to="/calendar">🗓️ Calendario</router-link> |
@@ -10,10 +11,5 @@
 <script>
 export default {
   name: "Start",
-  data() {
-    return {
-      menuPosition: "start",
-    };
-  },
 };
 </script>
