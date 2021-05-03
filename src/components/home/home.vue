@@ -2,7 +2,7 @@
 <nav id= "header">
       <div class="p-2 flex-grow-1 bd-highlight">
         <img
-          src="../assets/logo.jpeg"
+          src="../../assets/logo.jpeg"
           width="80"
           class="align-items-start ms-5 mt-2"
         />
@@ -25,7 +25,7 @@
       <div class="row">
         <div class="col-md-2 text-center"></div>
         <div class="col-md-4 text-center">
-          <img src="../assets/prova.png" width="600" />
+          <img src="../../assets/prova.png" width="600" />
         </div>
         <div class="col-md-4 text-center">
           <br><br>
@@ -40,23 +40,13 @@
       </div>
     </div>
 </section>
-<section>
-
-<div id= "nav">
-  <router-link to= "/">✔️ To Do</router-link> |
-  <router-link to= "/">🌎 La tua mappa</router-link> |
-  <router-link to= "/">🗓️ Calendario</router-link> |
-  <router-link to= "/">🕮 Il tuo habit tracker</router-link>
-  </div>
-
-</section>
 
 <section><br>
     <div class= "text-center">
         <h3>Perchè <strong>essere produttivi</strong> 💪</h3>
-        <img src= "../assets/study.jpg" width="250" alt= "study">&nbsp;&nbsp;&nbsp;
-        <img src= "../assets/study2.jpg" width= "250" alt= "study2">&nbsp;&nbsp;&nbsp;
-        <img src= "../assets/study3.jpg" width= "250">
+        <img src= "../../assets/study.jpg" width="250" alt= "study">&nbsp;&nbsp;&nbsp;
+        <img src= "../../assets/study2.jpg" width= "250" alt= "study2">&nbsp;&nbsp;&nbsp;
+        <img src= "../../assets/study3.jpg" width= "250">
       </div>
 </section>
 
@@ -67,7 +57,7 @@
 
 <script>
 export default {
-  name: "HomePageSignUp",
+  name: "Home",
 };
 </script>
 

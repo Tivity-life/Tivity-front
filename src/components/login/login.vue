@@ -20,7 +20,7 @@
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
                                 <label for="agree-term" class="label-agree-term"><span><span></span></span>Ricordami</label>
                             </div>
-                            <input type="submit" class="btn btn-outline-primary" value= "Accedi">
+                            <router-link class="btn btn-outline-primary" to="/to-do">Accedi</router-link>
                         </form>
                 </div>
             <div class="signup-image">
