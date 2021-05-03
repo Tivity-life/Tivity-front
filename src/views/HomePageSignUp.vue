@@ -47,6 +47,7 @@
   <router-link to= "/">🌎 La tua mappa</router-link> |
   <router-link to= "/">🗓️ Calendario</router-link> |
   <router-link to= "/">🕮 Il tuo habit tracker</router-link>
+  
   </div>
 
 </section>
@@ -56,16 +57,18 @@
         <h3>Perchè <strong>essere produttivi</strong> 💪</h3>
         <img src= "../assets/study.jpg" width="250" alt= "study">&nbsp;&nbsp;&nbsp;
         <img src= "../assets/study2.jpg" width= "250" alt= "study2">&nbsp;&nbsp;&nbsp;
-        <img src= "../assets/study3.jpg" width= "250">
+        <img src= "../assets/study3.jpg" width= "260" alt= "study3">
+        
       </div>
+      
 </section>
 
-<br>
 <footer>This website is designed by Ion Drumea, Chiara Giacanelli and Damiano Gambitta ©Tivity.me</footer>
 </template>
 
 
 <script>
+
 export default {
   name: "HomePageSignUp",
 };

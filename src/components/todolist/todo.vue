@@ -1,21 +1,21 @@
 <template>
  <div id= "todolist">
-            <div class= "container">
-                <br>
-                <h1 class= "app-title">Cose da fare</h1>
-                <div class="checklist-icon">        
-                    <figure><img src="./checklist.png"></figure>
-                </div>
-                Usa questa pagina per appuntarti le cose che non vuoi dimenticarti.
-                <br>
-                Scrivi ciò che vuoi fare oggi e clicca <em>Enter</em> per aggiungere un task<br> alla tua lista di cose da fare.<br>
-                Se vuoi modificare o eliminare un task, basta che clicchi sulle icone
-                a fianco!
-                <br><br>
-                <div class="empty-state">
-                    <h2 class="empty-state__title">Inizia a scrivere la tua todo list!</h2>
-                    <p class="empty-state__description">Quali sono i tuoi obiettivi per oggi?</p>
-                </div>
+        <div class= "container">
+            <br>
+            <h1 class= "app-title">Cose da fare</h1>
+            <div class="checklist-icon">        
+                <figure><img src="./checklist.png"></figure>
+            </div>
+            Usa questa pagina per appuntarti le cose che non vuoi dimenticarti.
+            <br>
+            Scrivi ciò che vuoi fare oggi e clicca <em>Enter</em> per aggiungere un task<br> alla tua lista di cose da fare.<br>
+            Se vuoi modificare o eliminare un task, basta che clicchi sulle icone
+            a fianco!
+            <br><br>
+            <div class="empty-state">
+                <h2 class="empty-state__title">Inizia a scrivere la tua todo list!</h2>
+                <p class="empty-state__description">Quali sono i tuoi obiettivi per oggi?</p>
+            </div>
                 
             <br>
             <!--Form per l'inserimento degli elementi nella lista-->
@@ -32,26 +32,50 @@
                 <input type= "submit" value= "Salva" @click="updateToDo">
             </div>
             <br>
-
-            <h5>Oggi ho deciso di:</h5>
             
-            <br>
+            <h5>Oggi ho deciso di:</h5>
+            <div id= "show">
+            <div v-if= "todos.length > 0 ">
+              
+             <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" v-on:click="showUndo()">Mostra solo le cose non fatte
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">Mostra solo le cose fatte
+                </div>
+            </div>
+            <div v-else>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" disabled>Mostra solo le cose non fatte
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" disabled>Mostra solo le cose fatte
+                </div>
+            </div>
+            
+            </div>
+            
             <ul>
-                <li v-for= "(todo, i) in todos" :key=  i v-bind:class="todo.done ? 'done' : '' ">
-                    <span class="label">{{ todo.label }}</span>
+                <li v-for= "(todo, i) in todosByStatus" :key=  i>
+                
+                    <input type="checkbox" :id= "todo.label" :value= "todo.value" v-on:change="completeTask(todo)" v-bind:checked="todo.done"/>
+                    <label class="label-agree-term" :for= todo.label><span></span>{{ todo.label }} </label>
+                
                     <div class= "actions">
-                    <button class= "btn btn-lg" type= "button"  v-on:click="markAsDoneOrUndone(todo)" style= "background-color: transparent;">
-                        <div v-if= "todo.done"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M21.03 5.72a.75.75 0 010 1.06l-11.5 11.5a.75.75 0 01-1.072-.012l-5.5-5.75a.75.75 0 111.084-1.036l4.97 5.195L19.97 5.72a.75.75 0 011.06 0z"></path></svg></div>
-                        <div v-else> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M12 2.5a9.5 9.5 0 100 19 9.5 9.5 0 000-19zM1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12z"></path></svg></div>
+                    <button class= "btn btn-lg" type= "button"  v-on:click="editToDo(i, todo)" style= "background-color: transparent;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
                      </button>
-                     <button class="btn btn-lg" type="button" v-on:click="deleteToDo(i)" aria-label="Delete" title="Delete" style= "background-color: transparent;"> 
+                    
+                    <button class="btn btn-lg" type="button" v-on:click="deleteToDo(i)" aria-label="Delete" title="Delete" style= "background-color: transparent;"> 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M16 1.75V3h5.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H8V1.75C8 .784 8.784 0 9.75 0h4.5C15.216 0 16 .784 16 1.75zm-6.5 0a.25.25 0 01.25-.25h4.5a.25.25 0 01.25.25V3h-5V1.75z"></path><path d="M4.997 6.178a.75.75 0 10-1.493.144L4.916 20.92a1.75 1.75 0 001.742 1.58h10.684a1.75 1.75 0 001.742-1.581l1.413-14.597a.75.75 0 00-1.494-.144l-1.412 14.596a.25.25 0 01-.249.226H6.658a.25.25 0 01-.249-.226L4.997 6.178z">
                         </path><path d="M9.206 7.501a.75.75 0 01.793.705l.5 8.5A.75.75 0 119 16.794l-.5-8.5a.75.75 0 01.705-.793zm6.293.793A.75.75 0 1014 8.206l-.5 8.5a.75.75 0 001.498.088l.5-8.5z"></path></svg>
                      </button>
-                
                  
                     </div>
-                    
+             
                 </li> 
                 
             </ul>
@@ -65,11 +89,12 @@
             <div v-else>
                 <p>Ti rimangono {{ todos.length }} cose da fare oggi 💪</p>
             </div>
-            <!--div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div--> 
-            </div>
-            <br>
             
+            </div><br>
+            
+        
         </div>
+            <!-- Material switch -->
     
 </template>
 
@@ -88,11 +113,13 @@ export default {
 
            selectedIndex: null,
            isEditing: false,
-          
+           showUndo: false,
+           showDone: false,
     }
     },
     
     methods: {
+        
         storeToDo() {
             if (this.todo.trim().length == 0) {
                 return
@@ -104,14 +131,13 @@ export default {
         editToDo(i, todo) {
             this.todo= todo
             this.selectedIndex= i
-            this.isEditing = true
+            this.isEditing = true 
         },
 
         updateToDo() {
             this.todos.splice(this.selectedIndex, 1, this.todo)
              //elimino un item, ovvero this.selectedIndex e lo updato a this.todo
-            this.isEditing= false
-            
+            this.isEditing= false 
         },
 
         deleteToDo(i) {
@@ -121,16 +147,34 @@ export default {
             
         },
         
-        markAsDoneOrUndone(todo) {
+        completeTask(todo) {
             todo.done = !todo.done;
-            
+        },
 
-    },
+    
+      
+    computed: {
 
+        todosByStatus: function() {
+            if (this.showUndo) {
+                var undone= this.todos.filter(function(todo) 
+                { return !todo.done; });
+                
+                return undone;
+            }
+            if (this.showDone) {
+                var done= this.todos.filter(function(todo) {
+                    return todo.done;
+                });
+                return done;
+            }
 
+            return this.todos;
+        }
+
+    }
     } 
-
-  
+    
 
 </script>
 
@@ -177,6 +221,16 @@ figure {
 #todolist .done .label {
 	opacity:10;
 }
+
+h5 {
+    text-align:center;
+}
+
+#show {
+    text-align: center;
+}
+
+
 
 
 
