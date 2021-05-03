@@ -36,6 +36,9 @@
           <br />
           <router-link class="btn btn-outline-primary" to="/sign-in"
             >Effettua la registrazione</router-link>
+          <br />
+          <router-link class="btn btn-outline-primary" to="/map"
+            >Vai in un posto magico</router-link>
         </div>
       </div>
     </div>

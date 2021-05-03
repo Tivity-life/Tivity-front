@@ -18,6 +18,7 @@ const routes = [
     component: () => import('../components/login/login.vue')
   },
   {
+
     path: '/todolist',
     name: 'todolist',
     component: () => import('../components/todolist/todo.vue')
@@ -29,6 +30,12 @@ const routes = [
     component: () => import('../components/about/about.vue')
   },
   
+{
+    path: '/map',
+    name: 'map',
+    component: () => import('../views/Map.vue')
+  }
+
 ]
 
 const router = createRouter({
