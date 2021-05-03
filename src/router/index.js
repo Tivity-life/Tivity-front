@@ -31,12 +31,17 @@ const routes = [
     path: '/start',
     name: 'start',
     component: () => import('../components/start/start.vue')
-  }, {
+  },
+  {
     path: '/to-do',
     name: 'to-do',
     component: () => import('../components/todolist/todo.vue')
   },
-  
+  {
+    path: '/map',
+    name: 'map',
+    component: () => import('../views/Map.vue')
+  }
 ]
 
 const router = createRouter({
