@@ -99,83 +99,61 @@
 </template>
 
 <script>
-
+import Menu from "../navigationMenu/navigationMenu.vue"
 export default {
-    el: '#todolist',
-    
-    data() {
-       return {
-           todo: '',
-           
-           todos: [
-            
-            ],
+  el: "#todolist",
+  components:{
+      Menu
+  },
+  data() {
+    return {
+      todo: "",
 
-           selectedIndex: null,
-           isEditing: false,
-           showUndo: false,
-           showDone: false,
-    }
+      todos: [],
+
+      selectedIndex: null,
+      isEditing: false,
+    };
+  },
+
+  methods: {
+    storeToDo() {
+      if (this.todo.trim().length == 0) {
+        return;
+      }
+      this.todos.push({
+        id: Math.floor(Math.random() * 9999) + 10,
+        label: this.todo,
+        done: false,
+      });
+      this.todo = "";
     },
-    
-    methods: {
-        
-        storeToDo() {
-            if (this.todo.trim().length == 0) {
-                return
-            }
-            this.todos.push({id: Math.floor(Math.random() * 9999) + 10, label: this.todo, done: false});
-            this.todo= ''
-        },
 
-        editToDo(i, todo) {
-            this.todo= todo
-            this.selectedIndex= i
-            this.isEditing = true 
-        },
+    editToDo(i, todo) {
+      this.todo = todo;
+      this.selectedIndex = i;
+      this.isEditing = true;
+    },
 
-        updateToDo() {
-            this.todos.splice(this.selectedIndex, 1, this.todo)
-             //elimino un item, ovvero this.selectedIndex e lo updato a this.todo
-            this.isEditing= false 
-        },
+    updateToDo() {
+      this.todos.splice(this.selectedIndex, 1, this.todo);
+      //elimino un item, ovvero this.selectedIndex e lo updato a this.todo
+      this.isEditing = false;
+    },
 
-        deleteToDo(i) {
-            this.todos.splice(i, 1) 
+    deleteToDo(i) {
+      this.todos.splice(i, 1);
+    },
+  },
+  emits: ["active-menu"],
+   created() {
+    this.$emit('active-menu');
+  },
 
-            }
-            
-        },
-        
-        completeTask(todo) {
-            todo.done = !todo.done;
-        },
-
-    
-      
-    computed: {
-
-        todosByStatus: function() {
-            if (this.showUndo) {
-                var undone= this.todos.filter(function(todo) 
-                { return !todo.done; });
-                
-                return undone;
-            }
-            if (this.showDone) {
-                var done= this.todos.filter(function(todo) {
-                    return todo.done;
-                });
-                return done;
-            }
-
-            return this.todos;
-        }
-
-    }
-    } 
-    
-
+  markAsDoneOrUndone(todo) {
+    todo.done = !todo.done;
+  },
+};
 </script>
 
 <style>
