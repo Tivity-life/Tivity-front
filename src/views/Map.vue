@@ -12,5 +12,11 @@ export default {
   components: {
     Italy,
   },
+  emits: ["start-app"],
+   created() {
+       console.log("emitto");
+    this.$emit('start-app');
+  },
+
 };
 </script>

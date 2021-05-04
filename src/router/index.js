@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomePage from '../views/HomePageSignUp.vue'
+import HomePage from '../components/home/home.vue'
 
 const routes = [
   {
@@ -16,6 +16,26 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import('../components/login/login.vue')
+  },
+  {
+    path: '/todolist',
+    name: 'todolist',
+    component: () => import('../components/todolist/todo.vue')
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('../components/home/about.vue')
+  },
+  {
+    path: '/start',
+    name: 'start',
+    component: () => import('../components/start/start.vue')
+  },
+  {
+    path: '/to-do',
+    name: 'to-do',
+    component: () => import('../components/todolist/todo.vue')
   },
   {
     path: '/map',
