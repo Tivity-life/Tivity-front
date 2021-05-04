@@ -1,7 +1,5 @@
 <template>
  <div id= "todolist">
-        <div class= "container">
-            <br>
             <h1 class= "app-title">Cose da fare</h1>
             <div class="checklist-icon">        
                 <figure><img src="./checklist.png"></figure>
@@ -56,7 +54,7 @@
             </div>
             
             <ul>
-                <li v-for= "(todo, i) in todosByStatus" :key=  i>
+                <li v-for= "(todo, i) in todos" :key=  i>
                 
                     <input type="checkbox" :id= "todo.label" :value= "todo.value" v-on:change="completeTask(todo)" v-bind:checked="todo.done"/>
                     <label class="label-agree-term" :for= todo.label><span></span>{{ todo.label }} </label>
@@ -92,8 +90,6 @@
             
             </div><br>
             
-        
-        </div>
             <!-- Material switch -->
     
 </template>
