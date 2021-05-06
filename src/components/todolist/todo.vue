@@ -52,8 +52,8 @@
             </div>
             
             </div>
-            
             <ul>
+  
                 <li v-for= "(todo, i) in todos" :key=  i>
                 
                     <input type="checkbox" :id= "todo.label" :value= "todo.value" v-on:change="completeTask(todo)" v-bind:checked="todo.done"/>
@@ -203,7 +203,6 @@ h5 {
 #show {
     text-align: center;
 }
-
 
 
 

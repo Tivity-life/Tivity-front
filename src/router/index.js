@@ -41,6 +41,11 @@ const routes = [
     path: '/map',
     name: 'map',
     component: () => import('../views/Map.vue')
+  },
+  {
+    path: '/habits',
+    name: 'habits',
+    component: () => import('../components/habit-tracker/habit.vue')
   }
 ]
 
