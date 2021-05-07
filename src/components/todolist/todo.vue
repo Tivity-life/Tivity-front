@@ -1,5 +1,5 @@
 <template>
- <div id= "todolist">
+ <div class="m-5" id= "todolist">
             <h1 class= "app-title">Cose da fare</h1>
             <div class="checklist-icon">        
                 <figure><img src="./checklist.png"></figure>
