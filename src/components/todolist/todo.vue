@@ -85,6 +85,43 @@
                     1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                   </svg>
                 </button>
+<!--
+ <div class="m-5" id= "todolist">
+            <h1 class= "app-title">Cose da fare</h1>
+            <div class="checklist-icon">        
+                <figure><img src="./checklist.png"></figure>
+            </div>
+            Usa questa pagina per appuntarti le cose che non vuoi dimenticarti.
+            <br>
+            Scrivi ciò che vuoi fare oggi e clicca <em>Enter</em> per aggiungere un task<br> alla tua lista di cose da fare.<br>
+            Se vuoi modificare o eliminare un task, basta che clicchi sulle icone
+            a fianco!
+            <br><br>
+            <div class="empty-state">
+                <h2 class="empty-state__title">Inizia a scrivere la tua todo list!</h2>
+                <p class="empty-state__description">Quali sono i tuoi obiettivi per oggi?</p>
+            </div>
+                
+            <br>
+            <!--Form per l'inserimento degli elementi nella lista-->
+            <!--Controlli sugli elementi della lista-->
+            <div v-if="!isEditing"> 
+                <form id="form">
+                    <input autofocus type="text" aria-label="Enter a new todo item" placeholder="Ad esempio: Vai a fare la spesa" v-model= "todo" @keyup.enter= "storeToDo">
+                </form>
+            </div>
+            <div v-else>
+                <form id="form">
+                    <input autofocus type="text" aria-label="Enter a new todo item" placeholder="Ad esempio: Vai a fare la spesa" v-model= "todo">
+                </form>
+                <input type= "submit" value= "Salva" @click="updateToDo">
+            </div>
+            <br>
+            
+            <h5>Oggi ho deciso di:</h5>
+            <div id= "show">
+            <div v-if= "todos.length > 0 ">
+-->
               
               <button class="btn btn-lg" type="button" v-on:click="deleteToDo(i)" aria-label="Delete" 
               title="Delete" style= "background-color: transparent;"> 

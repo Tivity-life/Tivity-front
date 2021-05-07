@@ -53,5 +53,9 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
+// Save in the local storage each last movement of the router.
+router.afterEach((to, from, next) => {
+  localStorage.setItem("/tivity/lastPosition", from.path);
+});
 
 export default router
