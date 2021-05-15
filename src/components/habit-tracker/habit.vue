@@ -206,6 +206,12 @@
 
 <script>
 export default {
+    
+  emits: ["change-section"],
+  created() {
+    this.$emit("change-section","/habit");
+  },
+},
   el: "#habits",
 
   data() {

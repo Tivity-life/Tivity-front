@@ -36,8 +36,6 @@ export async function testTokenLogin() {
   const agreeAutoLogin = getCookie("tivityAutoLogin");
   const token = getCookie("tivityToken");
 
-
-  console.log(agreeAutoLogin)
   if(agreeAutoLogin == "false"){
     return false
   }

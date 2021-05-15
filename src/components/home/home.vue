@@ -144,7 +144,9 @@
                   <h2>So' Damiano Gambitta</h2>
                   <p class="title">Frontend & Backend Developer</p>
                   <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                  <p>damiano@example.com</p>
+                  <p>damiano@example.com</p>>>>>>>> main
+291
+
                   <p><button class="button">Contact</button></p>
               </div>
           </div>
@@ -153,6 +155,8 @@
   </section>
   
 </nav>  
+
+
 
 <footer>This website is designed by Ion Drumea, Chiara Giacanelli and Damiano Gambitta per il corso di Linguaggi e Tecnologie per il Web
  ©Tivity.me</footer>

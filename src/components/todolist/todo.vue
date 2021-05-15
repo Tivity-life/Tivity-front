@@ -293,9 +293,10 @@ export default {
       return arrayTodos;
     },
   },
-  emits: ["active-menu"],
+  emits: ["change-section"],
   created() {
-    this.$emit("active-menu");
+    this.$emit("change-section","/to-do");
+
   },
 };
 </script>

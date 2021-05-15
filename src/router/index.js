@@ -40,7 +40,7 @@ const routes = [
   {
     path: '/map',
     name: 'map',
-    component: () => import('../views/Map.vue')
+    component: () => import('../components/map/map.vue')
   },
   {
     path: '/habits',
