@@ -198,9 +198,9 @@ export default {
       return arrayTodos;
     }
   },
-  emits: ["active-menu"],
-   created() {
-    this.$emit('active-menu');
+  emits: ["change-section"],
+  created() {
+    this.$emit("change-section","/to-do");
   },
 
 };

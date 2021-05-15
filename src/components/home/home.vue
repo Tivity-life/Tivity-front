@@ -138,6 +138,9 @@
   </section>
 </nav>  
 
+<pie-chart :data="[['Blueberry', 44], ['Strawberry', 23]]"></pie-chart>
+
+
 <footer>This website is designed by Ion Drumea, Chiara Giacanelli and Damiano Gambitta ©Tivity.me</footer>
 </div>
 </template>

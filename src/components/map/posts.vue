@@ -1,9 +1,9 @@
 <template>
-  <div v-for="post in posts" :key="post">
-    <div class="post">
+  <div v-for="post in posts" :key="post" style="height: 100%; width: 200px">
+    <div class="form-control">
       <h6>
         {{ post.text }}
-        <i @click="$emit('delete-post', post.id)" class="fas fa-times " ></i>
+        <i @click="$emit('delete-post', post.id)" class="fas fa-times"></i>
       </h6>
     </div>
   </div>
@@ -24,7 +24,7 @@ export default {
   color: red;
 }
 
-.post {
+.form-control {
   text-align: left;
   background: #ffffff;
   border-style: ridge;
@@ -34,7 +34,7 @@ export default {
   cursor: pointer;
 }
 
-.post h6 {
+.form-control h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -1,5 +1,6 @@
-export const afterLoginLocations = [
+export const navigationMenuLocations = [
     "/todolist",
     "/to-do",
-    "/map"
+    "/map",
+    "/habit"
 ]
