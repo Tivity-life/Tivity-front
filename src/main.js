@@ -3,6 +3,4 @@ import App from './App.vue'
 import router from './router'
 import 'chartkick/chart.js'
 
-const app = createApp(App)
-app.use(router)
-app.mount('#app')
+createApp(App).use(router).use(VueChartkick).mount('#app')

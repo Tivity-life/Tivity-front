@@ -66,7 +66,7 @@ export default {
     async tryTokenLogin() {
       if (await testTokenLogin()) {
         console.log(1);
-        this.$router.push("to-do");
+        this.$router.push("homepage");
       }
     },
     login() {
@@ -101,7 +101,7 @@ export default {
             }
           });
           console.log(2);
-          this.$router.push("to-do");
+          this.$router.push("homepage");
         })
         .catch((err) => {
           console.log("Something went wrong", err);
