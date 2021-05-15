@@ -211,7 +211,6 @@ export default {
   created() {
     this.$emit("change-section","/habit");
   },
-},
   el: "#habits",
 
   data() {
