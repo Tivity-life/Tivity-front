@@ -46,6 +46,11 @@ const routes = [
     path: '/habits',
     name: 'habits',
     component: () => import('../components/habit-tracker/habit.vue')
+  },
+  {
+    path: '/homepage',
+    name: 'homepage',
+    component: () => import('../components/homepage/homepage.vue')
   }
 ]
 
