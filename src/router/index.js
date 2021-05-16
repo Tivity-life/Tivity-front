@@ -46,7 +46,12 @@ const routes = [
     path: '/habits',
     name: 'habits',
     component: () => import('../components/habit-tracker/habit.vue')
-  }
+  },
+  {
+    path: '/calendar',
+    name: 'calendar',
+    component: () => import('../views/Calendar.vue')
+  },
 ]
 
 const router = createRouter({

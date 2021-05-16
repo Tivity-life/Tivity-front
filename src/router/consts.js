@@ -1,5 +1,6 @@
 export const afterLoginLocations = [
     "/todolist",
     "/to-do",
-    "/map"
+    "/map",
+    "/calendar"
 ]
