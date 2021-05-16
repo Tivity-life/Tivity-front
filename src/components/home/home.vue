@@ -57,15 +57,19 @@
       <img id="calendar" src="" alt= "calendar" style="visibility:hidden"/>
       <img id="habits" src="" alt= "habits" style="visibility:hidden"/>
     </div>
+  
+    
  
   </section>
 
   <section><br>
       <div class= "text-center">
           <h3>Perchè <strong>essere produttivi</strong> 💪</h3>
-          <img src= "../../assets/study.jpg" width="250" alt= "study">&nbsp;&nbsp;&nbsp;
-          <img src= "../../assets/study2.jpg" width= "250" alt= "study2">&nbsp;&nbsp;&nbsp;
-          <img src= "../../assets/study3.jpg" width= "250">
+          <div class= "immagini">
+            <img src= "../../assets/study.jpg" width="280" alt= "study">&nbsp;&nbsp;&nbsp;
+            <img src= "../../assets/study2.jpg" width= "280" alt= "study2">&nbsp;&nbsp;&nbsp;
+            <img src= "../../assets/study3.jpg" width= "280">&nbsp;&nbsp;&nbsp;
+          </div>
         </div>
   </section>
 
@@ -80,7 +84,18 @@
           </details>
           <details>
             <summary>Cosa posso fare con questa piattaforma?</summary>
-              <p class="text">In questa piattaforma troverai tutto quello di cui hai bisogno per essere <em>produttivo</em>.</p>
+              <p class="text">In questa piattaforma troverai tutto quello di cui hai bisogno per essere <em>produttivo</em>:
+              <ul>
+                <li style="font-size: 14px">Una to-do list per mantenere sempre traccia dei tuoi impegni;
+                </li>
+                <li style="font-size: 14px">Una mappa in cui puoi segnare tutti i viaggi che vuoi mantenere nel tuo cuore;
+                </li>
+                <li style="font-size: 14px">Un calendario per aiutarti a visualizzare i mesi dell'anno;
+                </li>
+                <li style="font-size: 14px">Un habit tracker per sviluppare e mantenere nuove abitudini;
+                </li>
+              </ul>
+              </p>
           </details>
           <details>
             <summary>Posso utilizzare Tivity.Me su tutti i dispositivi?</summary>
@@ -95,15 +110,15 @@
     </div>
   </section>
 
-  <section><br>
+  <section>
       <div id= "about">
-          <h2 style="text-align:center">Our Team</h2>
+          <h2 style="text-align:center; padding: 10px">Our Team</h2>
           <hr class= "beautiful line">
           <div class="row">
             <div class="column">
                 <div class="card">
-                    <img src="" alt= "Ion">
-                    <h2>Ion Drumea</h2>
+                    <img src="../../assets/lillo2.jpg" alt= "Ion">
+                    <h2>So' Ion Drumea</h2>
                     <p class="title">Frontend & Backend Developer</p>
                     <p>Some text that describes me lorem ipsum ipsum lorem.</p>
                     <p>ion@example.com</p>
@@ -114,8 +129,8 @@
           
             <div class="column">
                 <div class="card">
-                <img src="" alt= "Chiara">
-                    <h2>Chiara Giacanelli</h2>
+                <img src="../../assets/lillo1.jpg" alt= "Chiara">
+                    <h2>So' Chiara Giacanelli</h2>
                     <p class="title">Frontend & Backend Developer</p>
                     <p>Some text that describes me lorem ipsum ipsum lorem.</p>
                     <p>chiara@example.com</p>
@@ -125,20 +140,25 @@
           
           <div class="column">
               <div class="card">
-              <img src="" alt= "Damiano">
-                  <h2>Damiano Gambitta</h2>
+              <img src="../../assets/lillo3.jpg" alt= "Damiano">
+                  <h2>So' Damiano Gambitta</h2>
                   <p class="title">Frontend & Backend Developer</p>
                   <p>Some text that describes me lorem ipsum ipsum lorem.</p>
                   <p>damiano@example.com</p>
+
                   <p><button class="button">Contact</button></p>
               </div>
           </div>
           </div>
       </div>
   </section>
+  
 </nav>  
 
-<footer>This website is designed by Ion Drumea, Chiara Giacanelli and Damiano Gambitta ©Tivity.me</footer>
+
+
+<footer>This website is designed by Ion Drumea, Chiara Giacanelli and Damiano Gambitta per il corso di Linguaggi e Tecnologie per il Web
+ ©Tivity.me</footer>
 </div>
 </template>
 
@@ -195,10 +215,15 @@ section:nth-of-type(1) {
   margin-top: 96px;
 }
 
+section:nth-of-type(5) {
+ height: 600px;
+}
+
 section {
-  height: 450px;
+  height: 570px;
   padding: 16 px;
-  font-size: 20px;
+  font-size: 30px;
+  overflow: hidden;
   
 }
 
@@ -266,70 +291,73 @@ footer {
 }
 
 .card {
-    text-align: center;}
-          html {
-            box-sizing: border-box;
-          }
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 18px;
+    
+}
+
+html {
+  box-sizing: border-box;
+}
+  
+*, *:before, *:after {
+  box-sizing: inherit;
+}
           
-          *, *:before, *:after {
-            box-sizing: inherit;
-          }
-          
-          .column {
-            float: left;
-            width: 33.3%;
-            margin-bottom: 16px;
-            padding: 0 8px;
-          }
-          
-          .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            margin: 10px;
-          }
-          
-          .about-section {
-            padding: 80px;
-            text-align: center;
-            background-color: #ffffff;
-            color: rgb(0, 0, 0);
-          }
-          
-          .container {
-            padding: 0 16px;
-          }
-          
-          .container::after, .row::after {
-            content: "";
-            clear: both;
-            display: table;
-          }
-          
-          .title {
-            color: rgb(0, 0, 0);
-          }
-          
-          .button {
-            border: none;
-            outline: 0;
-            display: inline-block;
-            padding: 8px;
-            color: white;
-            background-color: #000;
-            text-align: center;
-            cursor: pointer;
-            width: 100%;
-          }
-          
-          .button:hover {
-            background-color: #555;
-          }
-          
-          @media screen and (max-width: 650px) {
-            .column {
-              width: 100%;
-              display: block;
-            }
-          }
+.column {
+  float: left;
+  width: 33.3%;
+  padding: 0 18px;
+}
+        
+
+.about-section {
+  padding: 80px;
+  text-align: center;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+}
+        
+.container {
+  padding: 0 16px;
+  
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+  
+}
+        
+.title {
+  color: rgb(0, 0, 0);
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+  
+.button:hover {
+  background-color: #555;
+}
+.card:hover {
+  transform: scale3d(1.006, 1.006, 1);
+
+}
+  
+
+  
+  
 
 .row-faqs {
   margin-left: 50px;
@@ -349,5 +377,21 @@ details{
   border-color:purple;
   color:purple
 } 
+
+.immagini {
+  transition: 0.8s;
+}
+
+.immagini:hover {
+  opacity: 0.8;
+  transform: translate(-12%);
+}
+
+.description {
+  float: right;
+  margin-right: 300px; 
+  justify-content: center;
+}
+
 
 </style>

@@ -1,24 +1,14 @@
 <template>
-  <div class="map text-center">
-    <img src="../../assets/rsz_italy_map.png" usemap="#image-map" />
+  <!-- <div style="height: 100%; width: 100%"> -->
+  <!-- <img src="../../assets/rsz_italy_map.png" usemap="#image-map" />
     <map name="image-map">
       <area
         alt="sardegna"
-        title="sardegna"
-        @click="regionClick('sardegna', 48, -1)"
-        coords="92,428,107,402,114,408,112,421,157,393,187,440,180,531,164,538,147,532,140,549,89,539,95,458,89,451"
-        shape="poly"
-      />
-      <area
-        alt="lazio"
-        title="lazio"
-        @click="regionClick('lazio', 58, 20)"
-        coords="251,336,265,311,303,338,332,314,337,322,328,335,339,345,335,354,323,358,337,364,353,373,367,378,363,405,346,407,327,406,302,391"
-        shape="poly"
-      />
-    </map>
-    <br />
+    <l-geo-json :geojson="geojson" :options="geojsonOptions" />
 
+    <div id="mapAPI" style="height: 100%; width: 100%"></div>
+
+    <button onclick="yee()">aaaa</button>
     <div
       :class="[
         postsManager.postActive ? 'visible' : 'd-none',
@@ -31,36 +21,57 @@
       }"
     >
       <div class="card-body">
-        <h5 class="card-title">{{ map[postsManager.regionActive].name }}</h5>
+        
+      </div>
+    </div>
+  </div> -->
 
+  <l-map
+    v-model="zoom"
+    v-model:zoom="zoom"
+    :center="[centLat, centLon]"
+    style="height: 100%; width: 100%"
+    @click="addMarker"
+  >
+    <l-tile-layer
+      url="https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=tT3HEqcxv90g1FSDwwOS"
+    ></l-tile-layer>
+    <l-marker
+      v-for="(marker, index) in markers"
+      v-bind:key="marker"
+      :lat-lng="[marker.posLat,marker.posLon]"
+    >
+      <!-- <h5 class="card-title">{{ map[postsManager.regionActive].name }}</h5> 
+      @click="removeMarker(index)"
+      -->
+      <l-popup>
         <Posts
           @delete-post="deleteTask"
-          :posts="map[postsManager.regionActive].posts"
+          :posts="marker.posts"
+          style="height: 100%; width: 200px"
         />
-
-        <textarea
+        <input
+          style="height: 100%; width: 200px"
           id="addPostTextArea"
           :class="[
-            postsManager.addingPost && postsManager.postActive
-              ? 'visible'
-              : 'd-none',
-            'form-control-sm',
+            postsManager.addingPost ? 'visible' : 'd-none',
+            'form-control',
           ]"
           placeholder="Add a Note!"
         />
-        <div class="">
+
+        <div class="align-center" style="height: 100%; width: 200px">
+          <!-- Add note button. -->
           <svg
-            @click="postsManager.addingPost = !postsManager.addingPost;
-            document.getElementById('addPostTextArea').value = '';"
+            @click="
+              postsManager.addingPost = !postsManager.addingPost;
+              document.getElementById('addPostTextArea').value = '';
+            "
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
             width="24"
             height="24"
-            :class="[
-              !postsManager.addingPost && postsManager.postActive
-                ? 'visible'
-                : 'd-none',
-            ]"
+            :class="[!postsManager.addingPost ? 'visible' : 'd-none']"
           >
             <path
               fill-rule="evenodd"
@@ -68,69 +79,85 @@
             ></path>
           </svg>
 
+          <!-- Add post button. -->
           <button
             type="button"
-            @click="addPost()"
+            @click="addPost(index)"
             :class="[
-              postsManager.addingPost && postsManager.postActive
-                ? 'visible'
-                : 'd-none',
+              postsManager.addingPost ? 'visible' : 'd-none',
               'btn-sm btn-outline-success',
             ]"
           >
             Add
           </button>
-
+          <!-- Exit from addPost mode button. -->
           <button
             type="button"
             @click="cancel()"
             :class="[
-              postsManager.addingPost && postsManager.postActive
-                ? 'visible'
-                : 'd-none',
+              postsManager.addingPost ? 'visible' : 'd-none',
               'btn-sm btn-outline-secondary ms-2 ',
             ]"
           >
             Cancel
           </button>
         </div>
-      </div>
-    </div>
-  </div>
+      </l-popup>
+    </l-marker>
+  </l-map>
 </template>
 
 <script>
 import Posts from "./posts";
+import { create_UUID } from "../../utility/util.js";
+
+import "leaflet/dist/leaflet.css";
+import { LMap, LTileLayer, LMarker, LPopup } from "@vue-leaflet/vue-leaflet";
 
 export default {
-  name: "Italy",
+  name: "Map",
+  components: {
+    LMap,
+    LTileLayer,
+    LMarker,
+    Posts,
+    LPopup,
+  },
   data() {
     return {
-      upHere: false,
-      postsManager: {
-        addingPost: false,
-        postActive: false,
-        regionActive: "sardegna",
-        regionLeft: "0%",
-        regionBottom: "0%",
-      },
-      map: {
-        sardegna: {
-          name: "Sardegna",
+      zoom: 6,
+      centLat: 41.541,
+      centLon: 12.29,
+      markers: [
+        {
+          id: "dbec2e89-08e9-41b1-850a-0dd23a098cc8",
+          posLat: 42.541,
+          posLon: 13.29,
           posts: [
-            { id: 1, text: "Belle le pecore!" },
-            { id: 2, text: "Ho mangiato degli ottimi biscotti da Sandro :)" },
+            { id: 1, text: "test1" },
+            { id: 2, text: "test2" },
           ],
         },
-        lazio: {
-          name: "Lazio",
-          posts: [{ id: 1, text: "Carbonara!!" }],
-        }
+      ],
+      postsManager: {
+        addingPost: false,
       },
-      seen: true,
     };
   },
   methods: {
+    log(message) {
+      console.log(message);
+    },
+    addMarker(event) {
+      this.markers.push({
+        posLat: event.latlng.lat, posLon:event.latlng.lng,
+        id: create_UUID(),
+        posts: [],
+      });
+    },
+    removeMarker(index) {
+      this.markers.splice(index, 1);
+    },
     // Manage region click and posts card visibility
     regionClick(region, bottom, left) {
       this.postsManager.postActive && this.postsManager.regionActive == region
@@ -140,16 +167,16 @@ export default {
       this.postsManager.regionLeft = left;
       this.postsManager.regionBottom = bottom;
     },
-    addPost() {
+    addPost(index) {
       this.postsManager.addingPost = false;
       const newPost = document.getElementById("addPostTextArea").value;
       if (newPost) {
-        this.map[this.postsManager.regionActive].posts.push({
-          id: this.map[this.postsManager.regionActive].posts.length,
+        this.markers[index].posts.push({
+          id: create_UUID(),
           text: newPost,
         });
-      };
-      document.getElementById('addPostTextArea').value = ''
+      }
+      document.getElementById("addPostTextArea").value = "";
     },
     deleteTask(id) {
       const region = this.map[this.postsManager.regionActive];
@@ -165,17 +192,20 @@ export default {
       this.postsManager.addingPost = false;
     },
   },
-  components: {
-    Posts,
+  async beforeMount() {},
+
+  emits: ["change-section"],
+  created() {
+    this.$emit("change-section", "/map");
   },
-  emits: ["active-menu"],
-   created() {
-    this.$emit('active-menu');
-  },
+  mounted() {},
 };
 </script>
 
 <style>
+.form-control {
+  border-color: black;
+}
 .map {
   position: relative;
   display: inline-block;

@@ -57,7 +57,7 @@
 
 <script>
 import { setCookie, testTokenLogin } from "../../utility/cookies";
-import { afterLoginLocations } from "../../router/consts";
+import { navigationMenuLocations } from "../../router/consts";
 
 export default {
   name: "login",
@@ -66,7 +66,7 @@ export default {
     async tryTokenLogin() {
       if (await testTokenLogin()) {
         console.log(1);
-        this.$router.push("to-do");
+        this.$router.push("homepage");
       }
     },
     login() {
@@ -101,7 +101,7 @@ export default {
             }
           });
           console.log(2);
-          this.$router.push("to-do");
+          this.$router.push("homepage");
         })
         .catch((err) => {
           console.log("Something went wrong", err);
@@ -113,7 +113,7 @@ export default {
     // If back after login do not login with token.
     const lastPosition = localStorage.getItem("/tivity/lastPosition");
     console.log;
-    if (!afterLoginLocations.includes(lastPosition) && lastPosition) {
+    if (!navigationMenuLocations.includes(lastPosition) && lastPosition) {
       this.tryTokenLogin();
     }
   },
