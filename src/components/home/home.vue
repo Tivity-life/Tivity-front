@@ -144,8 +144,7 @@
                   <h2>So' Damiano Gambitta</h2>
                   <p class="title">Frontend & Backend Developer</p>
                   <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                  <p>damiano@example.com</p>>>>>>>> main
-291
+                  <p>damiano@example.com</p>
 
                   <p><button class="button">Contact</button></p>
               </div>
