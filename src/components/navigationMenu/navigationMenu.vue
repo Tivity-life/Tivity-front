@@ -3,7 +3,6 @@
     class="d-flex flex-column p-3 pe-5 text-white bg-dark"
     style="width: 105%; height: 150vh;"
   >
-  
     <a href="/" class="fs-4 ps-4 mb-md-0 text-white text-decoration-none">
       Tivity
     </a>

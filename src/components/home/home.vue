@@ -35,9 +35,8 @@
               semplifica la tua vita
             </p>
             <br />
-            <router-link class="btn btn-outline-primary-reg" to="/sign-in"
-              >Effettua la registrazione</router-link><br>
-            <!--<button class= "btn btn-outline-primary-fo" @click="scroll('nav')">Scopri di più</button>-->
+            <router-link class="btn btn-outline-primary-reg" to="/signUp"
+              >Effettua la registrazione</router-link>
           </div>
         </div>
       </div>
