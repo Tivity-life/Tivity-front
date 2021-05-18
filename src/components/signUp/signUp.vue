@@ -70,7 +70,7 @@
 
 <script>
 export default {
-  name: "signup",
+  name: "signUp",
   methods: {
     signup() {
       const inputs = document.getElementsByTagName("input");

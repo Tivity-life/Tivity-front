@@ -1,31 +1,4 @@
 <template>
-  <!-- <div style="height: 100%; width: 100%"> -->
-  <!-- <img src="../../assets/rsz_italy_map.png" usemap="#image-map" />
-    <map name="image-map">
-      <area
-        alt="sardegna"
-    <l-geo-json :geojson="geojson" :options="geojsonOptions" />
-
-    <div id="mapAPI" style="height: 100%; width: 100%"></div>
-
-    <button onclick="yee()">aaaa</button>
-    <div
-      :class="[
-        postsManager.postActive ? 'visible' : 'd-none',
-        'cardPost',
-        'card w-50',
-      ]"
-      :style="{
-        bottom: postsManager.regionBottom + '%',
-        left: postsManager.regionLeft + '%',
-      }"
-    >
-      <div class="card-body">
-        
-      </div>
-    </div>
-  </div> -->
-
   <l-map
     v-model="zoom"
     v-model:zoom="zoom"
@@ -39,17 +12,11 @@
     <l-marker
       v-for="(marker, index) in markers"
       v-bind:key="marker"
-      :lat-lng="[marker.posLat,marker.posLon]"
+      :lat-lng="[marker.posLat, marker.posLon]"
+      @click="markerClick(index)"
     >
-      <!-- <h5 class="card-title">{{ map[postsManager.regionActive].name }}</h5> 
-      @click="removeMarker(index)"
-      -->
       <l-popup>
-        <Posts
-          @delete-post="deleteTask"
-          :posts="marker.posts"
-          style="height: 100%; width: 200px"
-        />
+        <Posts @delete-post="deleteTask" :posts="marker.posts" />
         <input
           style="height: 100%; width: 200px"
           id="addPostTextArea"
@@ -101,6 +68,16 @@
           >
             Cancel
           </button>
+          <button
+            type="button"
+            @click="removeMarker(index, marker.id)"
+            :class="[
+              postsManager.addingPost ? 'd-none' : 'visible',
+              'btn-sm btn-outline-secondary ms-2 ',
+            ]"
+          >
+            Delete
+          </button>
         </div>
       </l-popup>
     </l-marker>
@@ -110,9 +87,9 @@
 <script>
 import Posts from "./posts";
 import { create_UUID } from "../../utility/util.js";
-
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LMarker, LPopup } from "@vue-leaflet/vue-leaflet";
+import { getMarkers } from "./markers";
 
 export default {
   name: "Map",
@@ -123,6 +100,7 @@ export default {
     Posts,
     LPopup,
   },
+  props: ["user"],
   data() {
     return {
       zoom: 6,
@@ -141,6 +119,8 @@ export default {
       ],
       postsManager: {
         addingPost: false,
+        isMarkerActive: false,
+        markerActiveIndex: -1,
       },
     };
   },
@@ -148,24 +128,74 @@ export default {
     log(message) {
       console.log(message);
     },
+    markerClick(index) {
+      if (!this.isMarkerActive || this.markerActiveIndex != index) {
+        this.isMarkerActive = true;
+        this.markerActiveIndex = index;
+      } else if (this.isMarkerActive && this.markerActiveIndex == index) {
+        this.isMarkerActive = false;
+        this.markerActiveIndex = -1;
+      }
+    },
     addMarker(event) {
-      this.markers.push({
-        posLat: event.latlng.lat, posLon:event.latlng.lng,
-        id: create_UUID(),
-        posts: [],
-      });
+      console.log(event)
+      if(this.isMarkerActive){
+        return;
+      }
+      console.log("add")
+      const newMarker = {
+        userId: this.user.id,
+        posLat: event.latlng.lat,
+        posLon: event.latlng.lng,
+      };
+
+      fetch("http://localhost:8080/api/user/createMarker", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newMarker),
+      })
+        .then((res) => {
+          if (res.status !== 200) {
+            return alert("Error, please try later");
+          }
+
+          res.json().then((marker) => {
+            this.markers.push(marker);
+          });
+        })
+        .catch((err) => {
+          console.log("Something went wrong", err);
+        });
     },
-    removeMarker(index) {
-      this.markers.splice(index, 1);
-    },
-    // Manage region click and posts card visibility
-    regionClick(region, bottom, left) {
-      this.postsManager.postActive && this.postsManager.regionActive == region
-        ? (this.postsManager.postActive = !this.postsManager.postActive)
-        : (this.postsManager.postActive = true);
-      this.postsManager.regionActive = region;
-      this.postsManager.regionLeft = left;
-      this.postsManager.regionBottom = bottom;
+    removeMarker(index, markerId) {
+      console.log("index2");
+
+      fetch("http://localhost:8080/api/user/removeMarker", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ markerId: markerId }),
+      })
+        .then((res) => {
+          console.log(res.status);
+          if (res.status !== 200) {
+            return alert("Error, please try later");
+          }
+          // Remove marker from local storage
+          console.log("index");
+          console.log(index);
+          console.log(markerId);
+          console.log(this.markers);
+          this.markers.splice(index, 1);
+        })
+        .catch((err) => {
+          console.log("Something went wrong", err);
+        });
     },
     addPost(index) {
       this.postsManager.addingPost = false;
@@ -192,13 +222,24 @@ export default {
       this.postsManager.addingPost = false;
     },
   },
-  async beforeMount() {},
-
   emits: ["change-section"],
-  created() {
+  async created() {
+    if (this.$props.user.id) {
+      const markers = await getMarkers(this.$props.user.id);
+      for (const marker of markers) {
+        this.markers.push(marker);
+      }
+    }
     this.$emit("change-section", "/map");
   },
-  mounted() {},
+  async updated() {
+    if (this.$props.user.id) {
+      const markers = await getMarkers(this.$props.user.id);
+      for (const marker of markers) {
+        this.markers.push(marker);
+      }
+    }
+  },
 };
 </script>
 

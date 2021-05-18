@@ -37,7 +37,7 @@
               semplifica la tua vita
             </p>
             <br />
-            <router-link class="btn btn-outline-primary " to="/sign-in"
+            <router-link class="btn btn-outline-primary " to="/signUp"
               >Effettua la registrazione</router-link>
           </div>
         </div>

@@ -56,23 +56,25 @@
 </template>
 
 <script>
-import { setCookie, testTokenLogin } from "../../utility/cookies";
+import { setCookie } from "../../utility/cookies";
 import { navigationMenuLocations } from "../../router/consts";
+import { getUser } from "../../utility/user";
 
 export default {
   name: "login",
-  emits: ["disable-menu"],
+  emits: ["disable-menu", "user-data"],
   methods: {
     async tryTokenLogin() {
-      if (await testTokenLogin()) {
-        console.log(1);
+      const user = (await getUser()); 
+      if (user) {
+        this.$emit("user-data", user);
         this.$router.push("homepage");
       }
     },
     login() {
       const inputs = document.getElementsByTagName("input");
       const rememebr_login = inputs.rememebr_login.checked;
-
+      console.log("login")
       fetch("http://localhost:8080/api/auth/signin", {
         method: "POST",
         mode: "cors",
@@ -87,20 +89,21 @@ export default {
         .then((res) => {
           if (res.status !== 200) {
             alert("Error, please try later");
-            console.log(
-              "Looks like there was a problem. Status Code: " + res.status
-            );
             return;
           }
 
           // Examine the text in the response
-          res.json().then((data) => {
-            setCookie("tivityToken", data.accessToken, 1);
+          res.json().then((user) => {
+            setCookie("tivityToken", user.accessToken, 1);
+
             if (rememebr_login) {
               setCookie("tivityAutoLogin", rememebr_login, 1);
             }
+                        console.log("login");
+
+            console.log(user);
+            this.$emit("user-data", user);
           });
-          console.log(2);
           this.$router.push("homepage");
         })
         .catch((err) => {
