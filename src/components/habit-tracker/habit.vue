@@ -1,13 +1,16 @@
 <template>
-  <h2 style="padding: 10px">Il mio habit tracker settimanale</h2>
-  <p>
+  <h2 style="padding: 10px; text-align:center">Il mio habit tracker settimanale</h2>
+  <header style="justify-content:center; text-align:center">
+  <img src= "../../assets/prova3.jpg"/>
+  </header><br>
+  <p style= "text-align:center">
     Nelle righe in orizzontale ci sono i giorni, per ogni settimana.<br />
     Nelle righe in verticale ci sono le <strong>abitudini</strong> che puoi
     inserire per essere coerente con il tipo di persona che vuoi diventare
     <em>“da grande”</em>. <br />Alcuni esempio: tempo di qualità in famiglia,
     pulizie di casa, attività fisica, mangiare bene, bere acqua, leggere,
     studiare, disegnare, meditare, ecc.<br>Inserisci tutto ciò che vuoi, e visualizza
-    le statistiche settimanali nel grafico sottostante!
+    le statistiche settimanali nel grafico sottostante, cliccando sulla freccia a destra!
   </p>
   <br />
   <div id="habits" class="table-responsive">
@@ -197,7 +200,7 @@
     </div>
     <br />
     <div id="chart">
-      <p>Queste sono le statistiche delle tue abitudini:</p>
+      <p style="text-align:center">Queste sono le statistiche delle tue abitudini:</p>
       <br />
       <pie-chart :data="datachartByStatus" :donut="true"></pie-chart><br />
     </div>
@@ -248,13 +251,58 @@ export default {
       
     },
 
+    countActive(i) {
+      var counter= 0;
+      if (this.weekDays[i].isActiveMonday) {
+        counter += 1
+      }
+      if (this.weekDays[i].isActiveTuesday) {
+        counter += 1
+      }
+      if (this.weekDays[i].isActiveWednesday) {
+        counter += 1
+      }
+      if (this.weekDays[i].isActiveThursday) {
+        counter += 1
+      }
+      if (this.weekDays[i].isActiveFriday) {
+        counter += 1
+      }
+      if (this.weekDays[i].isActiveSaturday) {
+        counter += 1
+      }
+      if (this.weekDays[i].isActiveSunday) {
+        counter += 1
+      }
+      this.weekDays[i].n = counter;
+      return this.weekDays[i].n
+    },
+
     updateChart(i) {
       var str = this.weekDays[i].insert;
-      var app = [[str, 6]];
-      var list = app.concat(this.datachart);
+      var val= this.countActive(i); 
+      var app = [[str, val]];
+      var list = this.union(app, this.datachart);
       this.datachart = list;
     },
 
+    union(A, B) {
+      var obj = {};
+      for (var i = A.length-1; i >= 0; -- i)
+          obj[A[i]] = A[i];
+      for (var i = B.length-1; i >= 0; -- i)
+          obj[B[i]] = B[i];
+      var res = []
+      var app= []
+      for (var k in obj) {
+        if (app.includes(obj[k][0])) {
+          continue
+        }
+        app.push(obj[k][0])
+        res.push(obj[k])
+      }
+      return res;
+    }
   
   },
 
@@ -267,24 +315,7 @@ export default {
       return this.datachart;
     },
 
-    
-    countActive(i) {
-      var j;
-      for (j = 1; j< 8; j++) {
-        if (this.weekDays[i][j] == true) {
-          this.weekDays[i].n += 1
-        }
-        else {
-          this.weekDays[i].n -= 1 
-          if (this.weekDays[i].n < 0) {
-            this.weekDays[i].n = 0;
-          }
-        }
-      }
-      console.log(this.weekDays[i].n)
-      return this.weekDays[i].n
-    }
-  },
+  }
 };
 </script>
 

@@ -27,7 +27,8 @@
               required
             />
           </div>
-          <a href="#">Hai dimenticato la tua password?</a>
+          Sei nuovo?
+          <router-link class="" to="/sign-in" style="color: #bd2a3e">Crea il tuo account</router-link>
           <br />
           <br />
           <div class="form-group">
@@ -41,7 +42,7 @@
               ><span><span></span></span>Ricordami</label
             >
           </div>
-          <button type="submit" class="btn btn-outline-primary" to="/login">
+          <button type="submit" class="btn btn-outline-primary-reg" to="/login">
             Accedi
           </button>
         </form>

@@ -7,13 +7,14 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "leaflet": "^1.7.1",
     "chart.js": "^3.2.1",
     "core-js": "^3.12.1",
+    "leaflet": "^1.7.1",
     "vue": "^3.0.0",
     "vue-chartjs": "^3.5.1",
     "vue-chartkick": "^1.1.0",
-    "vue-router": "^4.0.6"
+    "vue-router": "^4.0.6",
+    "vuesax": "^4.0.1-alpha.25"
   },
   "devDependencies": {
     "@vue-leaflet/vue-leaflet": "^0.6.0",
