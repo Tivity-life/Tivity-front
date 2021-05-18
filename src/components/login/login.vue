@@ -28,7 +28,7 @@
             />
           </div>
           Sei nuovo?
-          <router-link class="" to="/sign-in" style="color: #bd2a3e">Crea il tuo account</router-link>
+          <router-link class="" to="/signUp" style="color: #bd2a3e">Crea il tuo account</router-link>
           <br />
           <br />
           <div class="form-group">
