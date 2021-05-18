@@ -49,19 +49,19 @@
             />
           </div>
           Hai già un account?
-          <router-link class="" to="/login">Accedi</router-link>
+          <router-link class="" to="/login" style="color: #bd2a3e">Accedi</router-link>
           <br />
           <br />
           <input
             type="submit"
-            class="btn btn-outline-primary"
+            class="btn btn-outline-primary-reg"
             value="Registrati"
           />
         </form>
       </div>
       <div class="signup-image">
         <figure>
-          <img src="./man-working-vector.jpg" alt="sign up image" />
+          <img src="../../assets/prova2.png" alt="sign up image" />
         </figure>
       </div>
     </div>
