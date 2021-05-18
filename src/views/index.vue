@@ -24,7 +24,7 @@
           : '',
       ]"
       class="flex-column m-3"
-      :style="[menuVisibility? 'max-width: 78%;':''] "
+      :style="[menuVisibility? 'max-width: 80%;':''] "
     >
       <router-view @change-section="changeSection"></router-view>
     </div>
