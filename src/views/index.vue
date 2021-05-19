@@ -56,7 +56,7 @@ export default {
         }
 
         this.menuVisibility = true;
-        destination === "/map"
+        destination === "/map" | destination === "/calendar"
           ? (this.isFluidContainer = true)
           : (this.isFluidContainer = false);
       } else {
