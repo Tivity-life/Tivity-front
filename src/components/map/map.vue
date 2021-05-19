@@ -1,11 +1,12 @@
 <template>
   <div class="container">
-    <div class="text" style="float: left; padding: 10px">
+    <div class="text" style="float: left; padding: 15px">
       <h2 style="padding: 10px; text-align:center;">La mia mappa</h2>
       <p style="text-align:center;">
         Hai in mente tanti viaggi da fare in giro per il mondo? 🌎<br />
-        Naviga nella mappa, gira il mondo e lascia dei <strong>pin</strong> sopra i luoghi che non puoi
-        perdere!<br>Inserisci le note sui pin per mantenere i tuoi ricordi sempre con te.
+        Naviga nella mappa, gira il mondo e lascia dei
+        <strong>pin</strong> sopra i luoghi che non puoi perdere!<br />Inserisci
+        le note sui pin per mantenere i tuoi ricordi sempre con te.
       </p>
     </div>
     <figure><img src="../../assets/api.jpg" /></figure>
@@ -42,7 +43,7 @@
           placeholder="Add a Note!"
         />
 
-        <div class="align-center" style="height: 100%; width: 200px">
+        <div class="align-center" style="height: 100%; width: 200px; padding: 5px">
           <!-- Add note button. -->
           <svg
             @click="
@@ -50,48 +51,70 @@
               document.getElementById('addPostTextArea').value = '';
             "
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
             width="24"
             height="24"
+            fill="currentColor"
             :class="[!postsManager.addingPost ? 'visible' : 'd-none']"
+            viewBox="0 0 16 16"
+            
           >
             <path
-              fill-rule="evenodd"
-              d="M13.25 2.5H2.75a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h10.5a.25.25 0 00.25-.25V2.75a.25.25 0 00-.25-.25zM2.75 1h10.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0113.25 15H2.75A1.75 1.75 0 011 13.25V2.75C1 1.784 1.784 1 2.75 1zM8 4a.75.75 0 01.75.75v2.5h2.5a.75.75 0 010 1.5h-2.5v2.5a.75.75 0 01-1.5 0v-2.5h-2.5a.75.75 0 010-1.5h2.5v-2.5A.75.75 0 018 4z"
-            ></path>
+              d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+            />
+            <path
+              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+            />
           </svg>
+           <!-- Exit from addPost mode button. -->
+          <button
+            type="button"
+            @click="cancel()"
+            :class="[
+              postsManager.addingPost ? 'visible' : 'd-none',
+              'btn btn-outline-dark',
+            ]"
 
+            style="border-color:white; border-radius: 70px; "
+            
+          >
+            Cancel
+          </button>
           <!-- Add post button. -->
           <button
             type="button"
             @click="addPost(index)"
             :class="[
               postsManager.addingPost ? 'visible' : 'd-none',
-              'btn-sm btn-outline-success',
+              'btn btn-outline-success',
             ]"
+            style= "float:right; border-color: white; border-radius: 70px;"
           >
             Add
-          </button>
-          <!-- Exit from addPost mode button. -->
-          <button
-            type="button"
-            @click="cancel()"
-            :class="[
-              postsManager.addingPost ? 'visible' : 'd-none',
-              'btn-sm btn-outline-secondary ms-2 ',
-            ]"
-          >
-            Cancel
           </button>
           <button
             type="button"
             @click="removeMarker(index, marker.id)"
             :class="[
               postsManager.addingPost ? 'd-none' : 'visible',
-              'btn-sm btn-outline-secondary ms-2 ',
+              'btn btn-lg ',
             ]"
           >
-            Delete
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              class="bi bi-trash"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+              />
+            </svg>
           </button>
         </div>
       </l-popup>
@@ -368,6 +391,5 @@ figure {
   width: 200px;
   justify-content: center;
   align-items: center;
-  
 }
 </style>
