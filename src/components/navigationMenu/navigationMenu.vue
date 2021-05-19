@@ -36,7 +36,7 @@
       </li>
     </ul>
     <hr />
-    <div>
+    <div style="text-align: center">
       <!-- TODO: connect to be and take the name with token -->
       Benvenuto 
       <span style= "color: #bd2a3e">{{ username }}</span>!
