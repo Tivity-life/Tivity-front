@@ -1,7 +1,7 @@
 <template>
 <div id= "homepage">
 <nav id= "header">
-      <div class="p-2 flex-grow-1 bd-highlight">
+      <div id= "logo" class="p-2 flex-grow-1 bd-highlight">
         <img
           src="../../assets/logo.jpeg"
           width="80"
@@ -26,7 +26,7 @@
       <div class="text-center pt-6 mt-5">
         <div class="row">
           <div class="col-md-2 text-center"></div>
-          <img src="../../assets/prova.png" style= "width: 38%"/>
+          <img id= "imm" src="../../assets/prova.png" style= "width: 38%;"/>
           <div class="col-md-4 text-center">
             <br><br>
             <h2 style="font-size: 55px">Tivity<span style= "color: #bd2a3e">.Me</span></h2>
@@ -197,7 +197,8 @@ export default {
       window.open('https://github.com/Tivity-life/Tivity-front')
     }
     
-  }
+  },
+  
 }
 
 </script>
@@ -213,6 +214,17 @@ export default {
   top: 0px;
   background-color: rgb(255, 255, 255);
   transition: background 0.4s;
+  justify-content: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -o-align-items: center;
+  -ms-align-items: center;
+  
 
 }
 
@@ -426,11 +438,52 @@ details{
   margin-right: 300px; 
   justify-content: center;
 }
+* {box-sizing: border-box;}
 
-.carousel-item {
-  height: 24rem;
-  background-color: black; 
+@media screen and (max-width: 765px) {
+  #header #logo {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  #header p {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  #header ul {
+    float: none;
+  }
+   .row #imm {
+    width: 50%;
+  }
+
+  .row {
+    justify-content: center;
+  }
+
+
 }
+@media screen and (max-width: 320px) {
+
+  #header {
+    flex-direction: column;
+    position: inherit;
+  }
+  #header ul {
+    float: none;
+    display: flex;
+    flex-direction: column-reverse;
+    align-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+
+
 
 
 </style>
