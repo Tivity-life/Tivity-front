@@ -105,6 +105,7 @@
 import moment from "moment";
 import {
   getDates,
+  getEvents,
   getTimes
 } from "./utils.js";
 
@@ -166,7 +167,7 @@ export default {
         userId: this.user.id,
       };
 
-      fetch("http://localhost:8080/api/user/createEvent", {
+      fetch(process.env.VUE_APP_API_URL + "api/user/createEvent", {
         method: "POST",
         mode: "cors",
         headers: {

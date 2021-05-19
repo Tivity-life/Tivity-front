@@ -1,6 +1,6 @@
 export async function getMarkers(userId) {
   return await fetch(
-    "http://localhost:8080/api/user/getMarkers?userId=" + userId,
+    process.env.VUE_APP_API_URL + "api/user/getMarkers?userId=" + userId,
     {
       method: "GET",
       mode: "cors",

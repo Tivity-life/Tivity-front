@@ -87,7 +87,7 @@ export default {
         roles: ["user"],
         password: inputs.password.value,
       };
-      fetch("http://localhost:8080/api/auth/signup", {
+      fetch(process.env.VUE_APP_API_URL + "api/auth/signup", {
         method: "POST",
         mode: "cors",
         headers: {

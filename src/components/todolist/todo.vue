@@ -121,7 +121,7 @@
         <input
           type="checkbox"
           :id="todo.label"
-          v-on:change="markAsDoneOrUndone(i)"
+          v-on:change="markAsDoneOrUndone(todo.id, todo.done)"
           v-bind:checked="todo.done"
         />
         <label class="label-agree-term" :for="todo.label"
@@ -160,7 +160,7 @@
           <button
             class="btn btn-lg"
             type="button"
-            v-on:click="deleteToDo(i)"
+            v-on:click="deleteToDo(todo)"
             aria-label="Delete"
             title="Delete"
             style="background-color: transparent;"
@@ -187,7 +187,7 @@
     </ul>
     <div
       v-if="
-        todos.filter((todo) => {
+        todos.filter(todo => {
           return todo.done === false;
         }).length == 0
       "
@@ -196,7 +196,7 @@
     </div>
     <div
       v-else-if="
-        todos.filter((todo) => {
+        todos.filter(todo => {
           return todo.done === false;
         }).length == 1
       "
@@ -207,7 +207,7 @@
       <p>
         Ti rimangono
         {{
-          todos.filter((todo) => {
+          todos.filter(todo => {
             return todo.done === false;
           }).length
         }}
@@ -222,14 +222,41 @@
 
 <script>
 import Menu from "../navigationMenu/navigationMenu.vue";
+
+export async function getTodos(userId) {
+  return await fetch(
+    process.env.VUE_APP_API_URL + "api/user/getTodos?userId=" + userId,
+    {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
+    .then(res => {
+      if (res.status !== 200) {
+        console.log("Something went wrong", err);
+        return false;
+      }
+      return res.json();
+    })
+    .catch(err => {
+      console.log("Something went wrong", err);
+      return false;
+    });
+}
+
 export default {
   el: "#todolist",
   components: {
     Menu,
   },
+  props: ["user"],
   data() {
     return {
       todo: "",
+      todoId: "",
       todos: [],
 
       selectedIndex: null,
@@ -245,15 +272,35 @@ export default {
       if (todo.length == 0) {
         return;
       }
-      this.todos.push({
-        id: Math.floor(Math.random() * 9999) + 10,
-        label: todo,
-        done: false,
-      });
-      this.todo = "";
+
+      fetch(process.env.VUE_APP_API_URL + "api/user/createTodo", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          label: todo,
+          done: false,
+          userId: this.user.id,
+        }),
+      })
+        .then(res => {
+          if (res.status !== 200) {
+            return alert("Error, please try later");
+          }
+
+          this.todo = "";
+
+          getTodos(this.user.id).then(todos => (this.todos = todos));
+        })
+        .catch(err => {
+          console.log("Something went wrong", err);
+        });
     },
     editToDo(i, todo) {
       this.todo = todo.label;
+      this.todoId = todo.id;
       this.selectedIndex = i;
       this.isEditing = true;
     },
@@ -263,25 +310,89 @@ export default {
         label: this.todo,
         done: false,
       });
-      //elimino un item, ovvero this.selectedIndex e lo updato a this.todo*/
-      this.isEditing = false;
-      this.todo = "";
+
+      fetch(process.env.VUE_APP_API_URL + "api/user/updateTodo", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          label: this.todo,
+          done: false,
+          todoId: this.todoId
+        }),
+      })
+        .then(res => {
+          if (res.status !== 200) {
+            return alert("Error, please try later");
+          }
+
+          //elimino un item, ovvero this.selectedIndex e lo updato a this.todo*/
+          this.isEditing = false;
+          this.todo = "";
+          this.todoId = "";
+
+          getTodos(this.user.id).then(todos => (this.todos = todos));
+        })
+        .catch(err => {
+          console.log("Something went wrong", err);
+        });
     },
-    deleteToDo(i) {
-      this.todos.splice(i, 1);
+    deleteToDo(todo) {
+      fetch(process.env.VUE_APP_API_URL + "api/user/removeTodo", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          todoId: todo.id
+        }),
+      })
+        .then(res => {
+          if (res.status !== 200) {
+            return alert("Error, please try later");
+          }
+
+          getTodos(this.user.id).then(todos => (this.todos = todos));
+        })
+        .catch(err => {
+          console.log("Something went wrong", err);
+        });
     },
 
-    markAsDoneOrUndone(i) {
-      this.todos[i].done = !this.todos[i].done;
+    markAsDoneOrUndone(todoId, done) {
+      fetch(process.env.VUE_APP_API_URL + "api/user/updateTodo", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          done: !done,
+          todoId: todoId
+        }),
+      })
+        .then(res => {
+          if (res.status !== 200) {
+            return alert("Error, please try later");
+          }
+
+          getTodos(this.user.id).then(todos => (this.todos = todos));
+        })
+        .catch(err => {
+          console.log("Something went wrong", err);
+        });
     },
   },
   computed: {
     todosByStatus: function() {
       var arrayTodos = [];
-      var undo = this.todos.filter((todo) => {
+      var undo = this.todos.filter(todo => {
         return todo.done === false;
       });
-      var done = this.todos.filter((todo) => {
+      var done = this.todos.filter(todo => {
         return todo.done === true;
       });
       if (this.showUndone === true) {
@@ -300,11 +411,21 @@ export default {
   created() {
     this.$emit("change-section", "/to-do");
   },
+  mounted() {
+    if (this.$props.user) {
+      getTodos(this.$props.user.id).then(todos => (this.todos = todos));
+    }
+  },
+  watch: {
+    user(u) {
+      console.log(u);
+      getTodos(u.id).then(todos => (this.todos = todos));
+    },
+  },
 };
 </script>
 
 <style>
-
 .container {
   width: 1000px;
 }

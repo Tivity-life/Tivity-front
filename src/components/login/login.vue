@@ -84,7 +84,7 @@ export default {
       sessionStorage.setItem('username', JSON.stringify(userObj));
 
       
-      fetch("http://localhost:8080/api/auth/signin", {
+      fetch(process.env.VUE_APP_API_URL + "api/auth/signin", {
         method: "POST",
         mode: "cors",
         headers: {

@@ -106,7 +106,7 @@ export default {
   },
   created() {
     const token = getCookie("tivityToken");
-    fetch("http://localhost:8080/api/user/getUser", {
+    fetch(process.env.VUE_APP_API_URL + "api/user/getUser", {
       method: "GET",
       mode: "cors",
       headers: {
