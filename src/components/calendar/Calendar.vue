@@ -230,43 +230,6 @@ export default {
     this.$emit("change-section", "/calendar");
   },
 };
-
-async function getEvents(userId) {
-  return await fetch(
-    "http://localhost:8080/api/user/getEvents?userId=" + userId,
-    {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  )
-    .then(res => {
-      if (res.status !== 200) {
-        console.log("Something went wrong", err);
-        return false;
-      }
-      return res.json();
-    })
-    .then(events => {
-      const _events = {};
-
-      for (const event of events) {
-        if (event.target in _events) {
-          _events[event.target].push(event);
-        } else {
-          _events[event.target] = [event];
-        }
-      }
-
-      return _events;
-    })
-    .catch(err => {
-      console.log("Something went wrong", err);
-      return false;
-    });
-}
 </script>
 
 <style>
