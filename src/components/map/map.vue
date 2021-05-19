@@ -16,7 +16,11 @@
       @click="markerClick(index)"
     >
       <l-popup>
-        <Posts @delete-post="deleteTask" :posts="marker.posts" />
+        <Posts
+          @delete-post="deletePost"
+          :marker="marker"
+          :markerIndex="index"
+        />
         <input
           style="height: 100%; width: 200px"
           id="addPostTextArea"
@@ -86,7 +90,6 @@
 
 <script>
 import Posts from "./posts";
-import { create_UUID } from "../../utility/util.js";
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LMarker, LPopup } from "@vue-leaflet/vue-leaflet";
 import { getMarkers } from "./markers";
@@ -111,15 +114,19 @@ export default {
           id: "dbec2e89-08e9-41b1-850a-0dd23a098cc8",
           posLat: 42.541,
           posLon: 13.29,
-          posts: [
-            { id: 1, text: "test1" },
-            { id: 2, text: "test2" },
-          ],
+          posts: ["Terremoto :'(", "Ma che buono il cibo!"],
+        },
+        {
+          id: "dbec2e89-08e9-41b1-850a-0dd23a098cc8",
+          posLat: 42.541,
+          posLon: 11.29,
+          posts: [],
         },
       ],
       postsManager: {
         addingPost: false,
         isMarkerActive: false,
+        clickOutsideMap: false,
         markerActiveIndex: -1,
       },
     };
@@ -129,20 +136,32 @@ export default {
       console.log(message);
     },
     markerClick(index) {
-      if (!this.isMarkerActive || this.markerActiveIndex != index) {
-        this.isMarkerActive = true;
-        this.markerActiveIndex = index;
-      } else if (this.isMarkerActive && this.markerActiveIndex == index) {
-        this.isMarkerActive = false;
-        this.markerActiveIndex = -1;
+      // Login to manage marker and map click interaction.
+      if (
+        !this.postsManager.isMarkerActive &&
+        this.postsManager.markerActiveIndex != index
+      ) {
+        this.postsManager.isMarkerActive = true;
+        this.postsManager.markerActiveIndex = index;
+      } else if (
+        this.postsManager.isMarkerActive &&
+        this.postsManager.markerActiveIndex == index
+      ) {
+        this.postsManager.isMarkerActive = false;
+        this.postsManager.markerActiveIndex = -1;
       }
     },
     addMarker(event) {
-      console.log(event)
-      if(this.isMarkerActive){
+      if (this.postsManager.isMarkerActive) {
+        this.postsManager.isMarkerActive = false;
+        this.postsManager.clickOutsideMap = true;
         return;
       }
-      console.log("add")
+      if (this.postsManager.clickOutsideMap) {
+        this.postsManager.clickOutsideMap = false;
+        return;
+      }
+
       const newMarker = {
         userId: this.user.id,
         posLat: event.latlng.lat,
@@ -171,7 +190,7 @@ export default {
         });
     },
     removeMarker(index, markerId) {
-      console.log("index2");
+      console.log("startRemove");
 
       fetch("http://localhost:8080/api/user/removeMarker", {
         method: "POST",
@@ -182,40 +201,69 @@ export default {
         body: JSON.stringify({ markerId: markerId }),
       })
         .then((res) => {
-          console.log(res.status);
+          console.log(res);
           if (res.status !== 200) {
             return alert("Error, please try later");
           }
-          // Remove marker from local storage
-          console.log("index");
-          console.log(index);
-          console.log(markerId);
-          console.log(this.markers);
-          this.markers.splice(index, 1);
         })
         .catch((err) => {
           console.log("Something went wrong", err);
         });
+      // TODO: move into fetch  positive response
+      // Remove marker from local storage
+      this.markers.splice(index, 1);
     },
     addPost(index) {
-      this.postsManager.addingPost = false;
-      const newPost = document.getElementById("addPostTextArea").value;
-      if (newPost) {
-        this.markers[index].posts.push({
-          id: create_UUID(),
-          text: newPost,
-        });
+      const newPostValue = document.getElementById("addPostTextArea").value;
+      if (newPostValue) {
+        this.postsManager.addingPost = false;
+        fetch("http://localhost:8080/api/user/addPost", {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            post: newPostValue,
+            markerId: this.markers[index].id,
+          }),
+        })
+          .then((res) => {
+            if (res.status !== 200) {
+              return alert("Error, please try later");
+            }
+            this.markers[index].posts.push(newPostValue);
+            document.getElementById("addPostTextArea").value = "";
+          })
+          .catch((err) => {
+            console.log("Something went wrong", err);
+          });
       }
-      document.getElementById("addPostTextArea").value = "";
     },
-    deleteTask(id) {
-      const region = this.map[this.postsManager.regionActive];
+    deletePost(index, markerId) {
+      console.log(index, markerId);
       if (confirm("Are you sure?")) {
-        for (let i = 0; i < region.posts.length; i++) {
-          if (region.posts[i].id == id) {
-            this.map[this.postsManager.regionActive].posts.splice(i, 1);
-          }
-        }
+        fetch("http://localhost:8080/api/user/deletePost", {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            post: this.markers[markerId].posts[index],
+            markerId: this.markers[markerId].id,
+          }),
+        })
+          .then((res) => {
+            if (res.status !== 200) {
+              return alert("Error, please try later");
+            }
+            this.markers[markerId].posts.splice(index, 1);
+            document.getElementById("addPostTextArea").value = "";
+          })
+          .catch((err) => {
+            console.log("Something went wrong", err);
+          });
       }
     },
     cancel() {
