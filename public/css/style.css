@@ -1,7 +1,8 @@
 /* @extend display-flex; */
 display-flex, .display-flex, .display-flex-center, .signup-content, .signin-content, .social-login, .socials  {
   display: flex;
-  display: -webkit-flex; }
+  display: -webkit-flex; 
+flex: wrap;}
 
 /* @extend list-type-ulli; */
 list-type-ulli, .socials {
