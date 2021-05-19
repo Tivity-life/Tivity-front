@@ -23,21 +23,19 @@
 
 <nav id= "principale">
   <section>
-      <div class="text-center pb-5 pt-5 mt-5">
+      <div class="text-center pt-6 mt-5">
         <div class="row">
           <div class="col-md-2 text-center"></div>
-          <div class="col-md-4 text-center">
-            <img src="../../assets/prova.png" width="600" />
-          </div>
+          <img src="../../assets/prova.png" style= "width: 38%"/>
           <div class="col-md-4 text-center">
             <br><br>
-            <h2>Tivity.Me</h2>
+            <h2 style="font-size: 55px">Tivity<span style= "color: #bd2a3e">.Me</span></h2>
             <p class="h5">
               Scrivi, pianifica e 
               semplifica la tua vita
             </p>
             <br />
-            <router-link class="btn btn-outline-primary " to="/sign-in"
+            <router-link class="btn btn-outline-primary-reg" to="/signUp"
               >Effettua la registrazione</router-link>
           </div>
         </div>
@@ -52,25 +50,28 @@
       <button class= "btn btn-light" @click="showImage('habits')"> 📚 Il tuo habit tracker</button>
     </div>
     <div class= "showImg">
-      <img id="todo" src="" alt= "todo" style="visibility:hidden"/>
-      <img id="map" src="" alt= "map" style="visibility:hidden"/>
-      <img id="calendar" src="" alt= "calendar" style="visibility:hidden"/>
-      <img id="habits" src="" alt= "habits" style="visibility:hidden"/>
+      <img id= 'todo' src= "" alt= "todo" style="visibility: visible; width: 70%">
+      <img id= 'map' src= "" width="280" alt= "map" style="visibility:hidden">
+      <img id= 'calendar' src= "" width="280" alt= "calendar" style="visibility:hidden">
+      <img id= 'habits' src= "" width="280" alt= "habits" style="visibility:hidden">
     </div>
   
-    
  
   </section>
 
   <section><br>
       <div class= "text-center">
           <h3>Perchè <strong>essere produttivi</strong> 💪</h3>
-          <div class= "immagini">
-            <img src= "../../assets/study.jpg" width="280" alt= "study">&nbsp;&nbsp;&nbsp;
-            <img src= "../../assets/study2.jpg" width= "280" alt= "study2">&nbsp;&nbsp;&nbsp;
-            <img src= "../../assets/study3.jpg" width= "280">&nbsp;&nbsp;&nbsp;
+          <div id= "immagini">
+            <img src= "../../assets/study.jpg" alt= "study" style="width: 19%">&nbsp;&nbsp;&nbsp;
+            <img src= "../../assets/study2.jpg" alt= "study2" style="width: 19%">&nbsp;&nbsp;&nbsp;
+            <img src= "../../assets/study3.jpg" style="width: 20%">&nbsp;&nbsp;&nbsp;
+            <div class= "column" style="width: 18%; float:right"><p id= "descr"><br>L’obiettivo vero e più alto della 
+            produttività è di fare spazio nella tua vita alle cose che sono davvero importanti. 
+            Non è essere sempre attivi e pieni di impegni, bensì fare le cose che ti appassionano 
+            e <strong>ti fanno battere il cuore</strong>. <br><br>In altre parole, si tratta di fare spazio alle cose che ti rendono felice!</p></div>
           </div>
-        </div>
+      </div>
   </section>
 
   <section>
@@ -111,42 +112,42 @@
   </section>
 
   <section>
-      <div id= "about">
-          <h2 style="text-align:center; padding: 10px">Our Team</h2>
+     <div id= "about">
+          <h2 style="text-align:center; padding: 20px">Our Team</h2>
           <hr class= "beautiful line">
           <div class="row">
             <div class="column">
                 <div class="card">
-                    <img src="../../assets/lillo2.jpg" alt= "Ion">
+                    <img class="card-img" src="../../assets/lillo2.jpg" alt= "Ion">
                     <h2>So' Ion Drumea</h2>
                     <p class="title">Frontend & Backend Developer</p>
-                    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                    <p>ion@example.com</p>
-                    <p><button class="button">Contact</button></p>
+                    <p>Studente al terzo anno di Informatica alla<br>Sapienza Università di Roma.</p>
+                    <p><button class="button" v-on:click= 'linkPage'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                      </svg>&nbsp;Visit our Github</button></p>
                 </div>
             </div>
-            
-          
             <div class="column">
                 <div class="card">
-                <img src="../../assets/lillo1.jpg" alt= "Chiara">
+                <img class="card-img" src="../../assets/lillo1.jpg" alt= "Chiara">
                     <h2>So' Chiara Giacanelli</h2>
                     <p class="title">Frontend & Backend Developer</p>
-                    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                    <p>chiara@example.com</p>
-                    <p><button class="button">Contact</button></p>
+                    <p>Studentessa al terzo anno di Informatica alla<br>Sapienza Università di Roma.</p>
+                    <p><button class="button" v-on:click= 'linkPage'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                      </svg>&nbsp;Visit our Github</button></p>
                 </div>
             </div>
           
           <div class="column">
               <div class="card">
-              <img src="../../assets/lillo3.jpg" alt= "Damiano">
+              <img class="card-img" src="../../assets/lillo3.jpg" alt= "Damiano">
                   <h2>So' Damiano Gambitta</h2>
                   <p class="title">Frontend & Backend Developer</p>
-                  <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                  <p>damiano@example.com</p>
-
-                  <p><button class="button">Contact</button></p>
+                  <p>Studente al terzo anno di Informatica alla<br>Sapienza Università di Roma.</p>
+                  <p><button class="button" v-on:click= 'linkPage'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                      </svg>&nbsp;Visit our Github</button></p>
               </div>
           </div>
           </div>
@@ -173,14 +174,13 @@ export default {
   
   el: '#nav',
   
-  data() {
-    return  {
-      app: ['todo', 'calendar', 'habits', 'map'],
-    }
-  },
-
   methods: {
     showImage(img) {
+      document.getElementById('todo').style.visibility='hidden';
+      document.getElementById('calendar').style.visibility='hidden';
+      document.getElementById('habits').style.visibility='hidden';
+      document.getElementById('map').style.visibility='hidden';
+
       document.getElementById(img).style.visibility='visible';
     },
 
@@ -191,7 +191,12 @@ export default {
         behavior: 'smooth',
         inline: 'start'
       });
+    },
+    
+    linkPage() {
+      window.open('https://github.com/Tivity-life/Tivity-front')
     }
+    
   }
 }
 
@@ -220,7 +225,7 @@ section:nth-of-type(5) {
 }
 
 section {
-  height: 570px;
+  height: 600px;
   padding: 16 px;
   font-size: 30px;
   overflow: hidden;
@@ -293,16 +298,15 @@ footer {
 .card {
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin: 18px;
+    margin: 15px;
+    transition: 0.2s ease-out;
+    display: flex;
     
 }
 
-html {
-  box-sizing: border-box;
-}
-  
-*, *:before, *:after {
-  box-sizing: inherit;
+.card-img {
+  overflow: hidden;
+  height: 250px;
 }
           
 .column {
@@ -328,6 +332,7 @@ html {
   content: "";
   clear: both;
   display: table;
+
   
 }
         
@@ -350,15 +355,12 @@ html {
 .button:hover {
   background-color: #555;
 }
+
 .card:hover {
   transform: scale3d(1.006, 1.006, 1);
 
 }
   
-
-  
-  
-
 .row-faqs {
   margin-left: 50px;
 }
@@ -374,23 +376,60 @@ details{
 
 .btn-outline-primary {
   border-radius: 70px;
-  border-color:purple;
-  color:purple
+  border-color: #bd2a3e;
+  color:#bd2a3e
+  
 } 
 
-.immagini {
-  transition: 0.8s;
+.btn-outline-primary:hover {
+  background-color: #e0475b;
+  border-color: #e0475b;
 }
 
-.immagini:hover {
+.btn-outline-primary-reg {
+  color: 		white;
+  border-color:	#e0475b;
+  background-color: #e0475b;
+  border-radius: 70px;
+
+}
+
+.btn-outline-primary-reg:hover {
+  color: white;
   opacity: 0.8;
-  transform: translate(-12%);
+
+}
+
+#immagini {
+  transition: 0.8s;
+  padding: 8px;
+  flex-wrap: wrap;
+}
+
+#immagini:hover {
+  opacity: 0.8;
+  transform: translate(-8%);
+}
+
+#descr {
+  opacity: 0;
+  text-align: right;
+}
+
+#immagini:hover #descr{
+  opacity: 1;
+  transition: all 0.5s;
 }
 
 .description {
   float: right;
   margin-right: 300px; 
   justify-content: center;
+}
+
+.carousel-item {
+  height: 24rem;
+  background-color: black; 
 }
 
 

@@ -3,8 +3,8 @@
     <br />
     <h1>Getting started</h1>
     <p>
-      Ciao "nome"! Benvenuto su Tivity.Me 👋<br />Clicca sulla sezione da cui
-      vuoi iniziare e divertiti!
+      Ciao {{ username }}! Benvenuto/a su Tivity.Me 👋<br />Clicca sulla sezione
+      da cui vuoi iniziare e divertiti!
     </p>
     <div class="cards-container">
       <div class="first-section">
@@ -16,9 +16,7 @@
               alt="Card image cap"
             />
             <div class="card-text">
-              <h4>
-                To Do list
-              </h4>
+              <h4>To Do list</h4>
               <p style="color: #fff">
                 Hai bisogno di ricordarti tutte le cose che devi fare?
                 <br />Prova la To Do list!
@@ -37,9 +35,7 @@
               alt="Card image cap"
             />
             <div class="card-text">
-              <h4>
-                Mappa
-              </h4>
+              <h4>Mappa</h4>
               <p style="color: #fff">
                 Uno spazio dedicato ai tuoi ricordi più belli in giro per il
                 mondo.
@@ -57,9 +53,7 @@
               alt="Card image cap"
             />
             <div class="card-text">
-              <h4>
-                Calendario
-              </h4>
+              <h4>Calendario</h4>
               <p style="color: #fff">
                 Per annotare tutti i tuoi appuntamenti durante l'anno<br />e
                 pianificare il futuro.
@@ -70,16 +64,14 @@
       </div>
       <div class="fourth-section">
         <router-link to="/habits">
-          <div class="card" style="width: 30rem; height: 20rem;">
+          <div class="card" style="width: 30rem; height: 20rem">
             <img
               class="card-img-top"
               src="../../assets/habit.jpg"
               alt="Card image cap"
             />
             <div class="card-text">
-              <h4>
-                Habit tracker
-              </h4>
+              <h4>Habit tracker</h4>
               <p style="color: #fff">
                 Coltiva le tue passioni e crea nuove abitudini per essere la
                 versione migliore di te stesso.
@@ -93,8 +85,53 @@
 </template>
 
 <script>
+import { getCookie } from "../../utility/cookies";
+
 export default {
   emits: ["disable-menu"],
+  data() {
+    return {
+      username: "",
+    };
+  },
+  methods: {
+    getUser() {
+      if (sessionStorage.length > 0) {
+        const key = sessionStorage.key(0);
+        this.username = JSON.parse(sessionStorage.getItem(key)).username;
+      } else {
+        if (!getCookie("tivityToken")) this.$router.push("/");
+      }
+    },
+  },
+  created() {
+    const token = getCookie("tivityToken");
+    fetch("http://localhost:8080/api/user/getUser", {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "x-access-token": token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          alert("Error, please try later");
+          return;
+        }
+
+        // Examine the text in the response
+        res.json().then((user) => {
+          this.username = user.username;
+        });
+      })
+      .catch((err) => {
+        console.log("Something went wrong", err);
+      });
+  },
+  beforeMount() {
+    this.getUser();
+  },
+  emits: ["user-data"],
 };
 </script>
 

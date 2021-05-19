@@ -1,9 +1,9 @@
 <template>
-  <div v-for="post in posts" :key="post" style="height: 100%; width: 200px">
+  <div v-for="(post, index) in marker.posts" :key="post" style="height: 100%; width: 200px">
     <div class="form-control">
       <h6>
-        {{ post.text }}
-        <i @click="$emit('delete-post', post.id)" class="fas fa-times"></i>
+        {{ post }}
+        <i @click="$emit('delete-post', index,markerIndex)" class="fas fa-times"></i>
       </h6>
     </div>
   </div>
@@ -13,9 +13,10 @@
 export default {
   name: "Posts",
   props: {
-    posts: Array,
+    marker: Object,
+    markerIndex: Number,
   },
-  emits: ["delete-post"],
+  emits: ["delete-post"]
 };
 </script>
 

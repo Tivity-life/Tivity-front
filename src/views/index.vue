@@ -1,5 +1,4 @@
 <template>
-
   <div
     :class="[
       menuVisibility
@@ -11,7 +10,7 @@
       :class="[menuVisibility ? 'flex-column align-items-stretch' : 'd-none']"
     >
       <div :class="[menuVisibility ? '' : 'd-none']">
-        <Menu />
+        <Menu :username="user? user.username: ''" />
       </div>
     </div>
 
@@ -24,9 +23,13 @@
           : '',
       ]"
       class="flex-column m-3"
-      :style="[menuVisibility? 'max-width: 78%;':''] "
+      :style="[menuVisibility ? 'max-width: 78%;' : '']"
     >
-      <router-view @change-section="changeSection"></router-view>
+      <router-view
+        :user="user"
+        @user-data="getUserData"
+        @change-section="changeSection"
+      ></router-view>
     </div>
     <div :class="[menuVisibility ? 'flex-column' : 'd-none']">
       <!-- This div is used to align correctly -->
@@ -36,17 +39,22 @@
 
 <script>
 import Menu from "../components/navigationMenu/navigationMenu";
+import { getUser } from "../utility/user";
 import { navigationMenuLocations } from "../router/consts";
-
 
 export default {
   components: { Menu },
   methods: {
-    log(){
-      console.log(this.menuVisibility)
+    log() {
+      console.log(this.menuVisibility);
     },
-    changeSection(destination) {
+     async changeSection(destination) {
+      // Manage navigation menu visibility
       if (navigationMenuLocations.includes(destination)) {
+        if (!this.user.username) {
+          this.user = await  getUser();
+        }
+
         this.menuVisibility = true;
         destination === "/map"
           ? (this.isFluidContainer = true)
@@ -55,11 +63,16 @@ export default {
         this.menuVisibility = false;
       }
     },
+    getUserData(user) {
+      this.user = user;
+    },
   },
   data() {
     return {
       menuVisibility: false,
       isFluidContainer: false,
+      username: "",
+      user: new Object(),
     };
   },
 };

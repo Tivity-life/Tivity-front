@@ -1,8 +1,8 @@
 <template>
   <div class="m-4" id="todolist">
     <h1 class="app-title">Cose da fare</h1>
-    <div class="checklist-icon">
-      <figure><img src="./checklist.png" /></figure>
+    <div>
+      <figure><img src="../../assets/prova4.jpg" /></figure>
     </div>
     Usa questa pagina per appuntarti le cose che non vuoi dimenticarti.
     <br />
@@ -304,6 +304,10 @@ export default {
 </script>
 
 <style>
+
+.container {
+  width: 1000px;
+}
 h1 {
   text-align: left;
   font-weight: bold;
@@ -322,13 +326,15 @@ input[type="text"] {
 }
 
 figure {
-  display: block;
+  display: flex;
   margin-top: 1em;
   margin-bottom: 1em;
-  margin-left: 0px;
-  margin-right: 200px;
+  margin-left: 50px;
+  margin-right: 100px;
   width: 200px;
   float: right;
+  justify-content: center;
+  align-items: center;
 }
 #todolist li {
   display: flex;

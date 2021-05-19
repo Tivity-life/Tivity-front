@@ -1,5 +1,8 @@
 <template>
   <h2 style="padding: 10px; text-align:center">Il mio habit tracker settimanale</h2>
+  <header style="justify-content:center; text-align:center">
+  <img src= "../../assets/prova3.jpg"/>
+  </header><br>
   <p style= "text-align:center">
     Nelle righe in orizzontale ci sono i giorni, per ogni settimana.<br />
     Nelle righe in verticale ci sono le <strong>abitudini</strong> che puoi
@@ -7,7 +10,7 @@
     <em>“da grande”</em>. <br />Alcuni esempio: tempo di qualità in famiglia,
     pulizie di casa, attività fisica, mangiare bene, bere acqua, leggere,
     studiare, disegnare, meditare, ecc.<br>Inserisci tutto ciò che vuoi, e visualizza
-    le statistiche settimanali nel grafico sottostante!
+    le statistiche settimanali nel grafico sottostante, cliccando sulla freccia a destra!
   </p>
   <br />
   <div id="habits" class="table-responsive">
