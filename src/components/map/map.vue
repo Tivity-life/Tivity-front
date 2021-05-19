@@ -1,4 +1,15 @@
 <template>
+  <div class="container">
+    <div class="text" style="float: left; padding: 10px">
+      <h2 style="padding: 10px; text-align:center;">La mia mappa</h2>
+      <p style="text-align:center;">
+        Hai in mente tanti viaggi da fare in giro per il mondo? 🌎<br />
+        Naviga nella mappa, gira il mondo e lascia dei <strong>pin</strong> sopra i luoghi che non puoi
+        perdere!<br>Inserisci le note sui pin per mantenere i tuoi ricordi sempre con te.
+      </p>
+    </div>
+    <figure><img src="../../assets/api.jpg" /></figure>
+  </div>
   <l-map
     v-model="zoom"
     v-model:zoom="zoom"
@@ -295,6 +306,10 @@ export default {
 .form-control {
   border-color: black;
 }
+.container {
+  width: 100%;
+}
+
 .map {
   position: relative;
   display: inline-block;
@@ -343,5 +358,16 @@ export default {
   to {
     opacity: 1;
   }
+}
+
+figure {
+  display: flex;
+  margin-bottom: 1em;
+  margin-right: 160px;
+  float: right;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+  
 }
 </style>
