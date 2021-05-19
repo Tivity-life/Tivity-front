@@ -22,7 +22,7 @@
             : 'container'
           : '',
       ]"
-      class="flex-column m-3"
+      class="flex-column m"
       :style="[menuVisibility ? 'max-width: 78%;' : '']"
     >
       <router-view
