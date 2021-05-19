@@ -3,7 +3,7 @@
     <br />
     <h1>Getting started</h1>
     <p>
-      Ciao {{username}}! Benvenuto su Tivity.Me 👋<br />Clicca sulla sezione da cui
+      Ciao {{username}}! Benvenuto/a su Tivity.Me 👋<br />Clicca sulla sezione da cui
       vuoi iniziare e divertiti!
     </p>
     <div class="cards-container">
@@ -91,10 +91,20 @@ export default {
   emits: ["disable-menu"],
   data(){
     return{
-      username:"patato"
+      username:""
     }
   },
-  methods: {},
+  methods: {
+    getUser() {
+      if (sessionStorage.length > 0) {
+        const key= sessionStorage.key(0)
+        this.username= JSON.parse(sessionStorage.getItem(key)).username;
+      }
+      else {
+        this.$router.push("/");
+      }
+    }
+  },
   created() {
     const token = getCookie("tivityToken");
     fetch("http://localhost:8080/api/user/getUser", {
@@ -118,6 +128,9 @@ export default {
       .catch((err) => {
         console.log("Something went wrong", err);
       });
+  },
+  beforeMount() {
+    this.getUser();
   },
   emits: ["user-data"],
 };

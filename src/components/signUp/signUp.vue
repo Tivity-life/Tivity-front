@@ -116,6 +116,7 @@ export default {
   created() {
     this.$emit("disable-menu");
   },
+
 };
 </script>
 

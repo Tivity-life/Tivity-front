@@ -76,6 +76,14 @@ export default {
       const inputs = document.getElementsByTagName("input");
       const rememebr_login = inputs.rememebr_login.checked;
       console.log("login")
+
+      let userObj = {
+        username: inputs.username.value,
+      }
+
+      sessionStorage.setItem('username', JSON.stringify(userObj));
+
+      
       fetch("http://localhost:8080/api/auth/signin", {
         method: "POST",
         mode: "cors",
