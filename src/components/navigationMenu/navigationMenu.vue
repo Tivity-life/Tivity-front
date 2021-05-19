@@ -31,7 +31,7 @@
         <router-link
           class="nav-link text-white bi ms-2me-2 text-decoration-none"
           to="/habits"
-          >🕮 Il tuo habit tracker</router-link
+          >📚 Il tuo habit tracker</router-link
         >
       </li>
     </ul>
