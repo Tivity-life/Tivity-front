@@ -3,8 +3,8 @@
     <br />
     <h1>Getting started</h1>
     <p>
-      Ciao {{username}}! Benvenuto/a su Tivity.Me 👋<br />Clicca sulla sezione da cui
-      vuoi iniziare e divertiti!
+      Ciao {{ username }}! Benvenuto/a su Tivity.Me 👋<br />Clicca sulla sezione
+      da cui vuoi iniziare e divertiti!
     </p>
     <div class="cards-container">
       <div class="first-section">
@@ -89,21 +89,20 @@ import { getCookie } from "../../utility/cookies";
 
 export default {
   emits: ["disable-menu"],
-  data(){
-    return{
-      username:""
-    }
+  data() {
+    return {
+      username: "",
+    };
   },
   methods: {
     getUser() {
       if (sessionStorage.length > 0) {
-        const key= sessionStorage.key(0)
-        this.username= JSON.parse(sessionStorage.getItem(key)).username;
+        const key = sessionStorage.key(0);
+        this.username = JSON.parse(sessionStorage.getItem(key)).username;
+      } else {
+        if (!getCookie("tivityToken")) this.$router.push("/");
       }
-      else {
-        this.$router.push("/");
-      }
-    }
+    },
   },
   created() {
     const token = getCookie("tivityToken");
@@ -122,7 +121,7 @@ export default {
 
         // Examine the text in the response
         res.json().then((user) => {
-          this.username= user.username
+          this.username = user.username;
         });
       })
       .catch((err) => {

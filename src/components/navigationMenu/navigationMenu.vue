@@ -52,6 +52,8 @@
 </template>
 
 <script>
+import { getCookie } from "../../utility/cookies";
+
 export default {
   name: "Start",
   data() {
@@ -67,7 +69,7 @@ export default {
         this.username= JSON.parse(sessionStorage.getItem(key)).username;
       }
       else {
-        this.$router.push("/");
+        if (!getCookie("tivityToken")) this.$router.push("/");
       }
     },
 
