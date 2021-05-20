@@ -362,4 +362,17 @@ h5 {
 #show {
   text-align: center;
 }
+
+@media screen and (max-width: 480px) {
+  figure {
+    width:40%;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  figure {
+    width:25%;
+  }
+}
+
 </style>
