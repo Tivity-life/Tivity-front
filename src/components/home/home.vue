@@ -66,7 +66,7 @@
             <img src= "../../assets/study.jpg" alt= "study" style="width: 19%">&nbsp;&nbsp;&nbsp;
             <img src= "../../assets/study2.jpg" alt= "study2" style="width: 19%">&nbsp;&nbsp;&nbsp;
             <img src= "../../assets/study3.jpg" style="width: 20%">&nbsp;&nbsp;&nbsp;
-            <div class= "column" style="width: 18%; float:right"><p id= "descr"><br>L’obiettivo vero e più alto della 
+            <div class= "column-descr" style="width: 18%; float:right"><p id= "descr"><br>L’obiettivo vero e più alto della 
             produttività è di fare spazio nella tua vita alle cose che sono davvero importanti. 
             Non è essere sempre attivi e pieni di impegni, bensì fare le cose che ti appassionano 
             e <strong>ti fanno battere il cuore</strong>. <br><br>In altre parole, si tratta di fare spazio alle cose che ti rendono felice!</p></div>
@@ -464,6 +464,14 @@ details{
     justify-content: center;
   }
 
+  .column-descr {
+    display: contents;
+}
+  #descr {
+    font-size: x-small;
+    padding: 10%
+  }
+
 
 }
 @media screen and (max-width: 320px) {
@@ -480,6 +488,8 @@ details{
     align-items: flex-start;
     flex-wrap: wrap;
   }
+
+  
 }
 
 
