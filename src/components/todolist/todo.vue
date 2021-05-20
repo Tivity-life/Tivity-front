@@ -1,6 +1,6 @@
 <template>
   <div class="m-4" id="todolist">
-    <h1 class="app-title">Cose da fare<span style= "font-size: 35px"> ✏️ </span></h1>
+    <div class="app-title">Cose da fare<span style= "font-size: 35px"> ✏️ </span></div>
     <div>
       <figure style=""><img src="../../assets/prova4.jpg" /></figure>
     </div>
@@ -312,6 +312,10 @@ export default {
 }
 .app-title {
   font-weight: bold;
+  font-size: 40px;
+}
+.descr-todo {
+  text-align: left;
 }
 h2 {
   text-align: center;

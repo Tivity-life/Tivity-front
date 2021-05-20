@@ -326,6 +326,7 @@ export default {
 
 .opzioni button {
   font-size: 17px;
+  justify-content: left;
 }
 
 .green {
