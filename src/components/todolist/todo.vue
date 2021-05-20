@@ -1,6 +1,6 @@
 <template>
   <div class="m-4" id="todolist">
-    <h1 class="app-title">Cose da fare</h1>
+    <h1 class="app-title" style="margin-left: 15%">Cose da fare</h1>
     <div>
       <figure><img src="../../assets/prova4.jpg" /></figure>
     </div>
@@ -22,7 +22,7 @@
     <!--Form per l'inserimento degli elementi nella lista-->
     <!--Controlli sugli elementi della lista-->
     <div v-if="!isEditing">
-      <form id="form">
+      <div id="form">
         <input
           type="text"
           aria-label="Enter a new todo item"
@@ -30,12 +30,12 @@
           v-model="todo"
           v-on:keyup.enter="storeToDo(todo)"
         />
-      </form>
+      </div>
     </div>
     <div v-else>
-      <form id="form">
+      <div id="form">
         <input type="text" aria-label="Enter a new todo item" v-model="todo" />
-      </form>
+      </div>
       <input type="submit" value="Salva" @click="updateToDo()" />
     </div>
     <br />
