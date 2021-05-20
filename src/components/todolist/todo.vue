@@ -2,7 +2,7 @@
   <div class="m-4" id="todolist">
     <h1 class="app-title">Cose da fare<span style= "font-size: 35px"> ✏️ </span></h1>
     <div>
-      <figure style="display: flex"><img src="../../assets/prova4.jpg" /></figure>
+      <figure style=""><img src="../../assets/prova4.jpg" /></figure>
     </div>
     <div class= "descr-todo">
     Usa questa pagina per appuntarti le cose che non vuoi dimenticarti.
