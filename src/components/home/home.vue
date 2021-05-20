@@ -50,8 +50,8 @@
       <button class= "btn btn-light" @click="showImage4"> 📚 Il tuo habit tracker</button>
     </div>
     <div class= "showImg">
-    <img id= "immagine" src= "../../assets/Cattura.png" alt= "todo" style="width: 62%; border-radius: 15px;">
-    <img id= "smartphone" src= "../../assets/Image3.jpg" alt= "smartphone" style= "width: 15%; border-radius: 15px; ">
+    <img id= "immagine" src= "../../assets/Cattura.png" alt= "todo" style="width: 60%; border-radius: 15px;">
+    <img id= "smartphone" src= "../../assets/Image3.jpg" alt= "smartphone" style= "width: 15%; border-radius: 23px;">
     </div>
  
   </section>
@@ -250,11 +250,6 @@ export default {
 
 section:nth-of-type(1) {
   margin-top: 96px;
-}
-
-
-section:nth-of-type(5) {
- height: 600px;
 }
 
 section {
@@ -493,12 +488,17 @@ details{
 
 
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 420px) {
 
   #header {
     flex-direction: column;
     position: inherit;
   }
+
+  #header #logo {
+    width: 100%
+  }
+
   #header ul {
     float: none;
     display: flex;
@@ -507,6 +507,23 @@ details{
     align-items: flex-start;
     flex-wrap: wrap;
   }
+
+section:nth-of-type(1) {
+  margin-top: 96px;
+  height: 600px;
+}
+
+section:nth-of-type(5) {
+ height: 600px;
+}
+
+section {
+  height: 450px;
+  padding: 16 px;
+  font-size: 30px;
+  overflow: hidden;
+  
+}
 
   
 }
