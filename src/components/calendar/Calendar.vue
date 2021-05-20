@@ -234,6 +234,9 @@ export default {
 </script>
 
 <style>
+.container {
+  width: 1400px;
+}
 .calendar {
   padding: 20px;
   background: #fff;

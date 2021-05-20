@@ -1,5 +1,5 @@
 <template>
-  <h2 style="padding: 10px; text-align:center">Il mio habit tracker settimanale</h2>
+  <h2 style="padding: 10px; text-align:center">Il mio habit tracker settimanale <span style="font-size: 30px">🏡</span> </h2>
   <header style="justify-content:center; text-align:center">
   <img src= "../../assets/prova3.jpg"/>
   </header><br>

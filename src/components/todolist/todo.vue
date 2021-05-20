@@ -1,9 +1,10 @@
 <template>
   <div class="m-4" id="todolist">
-    <h1 class="app-title" style="margin-left: 15%">Cose da fare</h1>
+    <h1 class="app-title">Cose da fare<span style= "font-size: 35px"> ✏️ </span></h1>
     <div>
-      <figure><img src="../../assets/prova4.jpg" /></figure>
+      <figure style="display: flex"><img src="../../assets/prova4.jpg" /></figure>
     </div>
+    <div class= "descr-todo">
     Usa questa pagina per appuntarti le cose che non vuoi dimenticarti.
     <br />
     Scrivi ciò che vuoi fare oggi e clicca <em>Enter</em> per aggiungere un
@@ -11,6 +12,7 @@
     alla tua lista di cose da fare.<br />
     Se vuoi modificare o eliminare un task, basta che clicchi sulle icone a
     fianco!
+    </div>
     <br /><br />
     <div class="empty-state">
       <h2 class="empty-state__title">Inizia a scrivere la tua todo list!</h2>
@@ -427,10 +429,9 @@ export default {
 
 <style>
 .container {
-  width: 1000px;
+  width: 100%;
 }
 h1 {
-  text-align: left;
   font-weight: bold;
 }
 h2 {
