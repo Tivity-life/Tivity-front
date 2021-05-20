@@ -207,9 +207,11 @@ export default {
     
     linkPage() {
       window.open('https://github.com/Tivity-life/Tivity-front')
-    }
+    },
+
     
   },
+  
   
 }
 
@@ -451,7 +453,8 @@ details{
   margin-right: 300px; 
   justify-content: center;
 }
-* {box-sizing: border-box;}
+
+
 
 @media screen and (max-width: 765px) {
   #header #logo {
@@ -469,7 +472,6 @@ details{
   #header ul {
     float: none;
   }
-  
 
   .row {
     justify-content: center;
