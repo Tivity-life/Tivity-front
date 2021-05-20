@@ -431,7 +431,7 @@ export default {
 .container {
   width: 100%;
 }
-h1 {
+.app-title {
   font-weight: bold;
 }
 h2 {

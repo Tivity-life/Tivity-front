@@ -194,7 +194,7 @@
 
     <div class="opzioni">
       <button type="button" class="btn btn-lg" @click="addNewRow">
-        <i class="fas fa-plus-circle"></i>
+        <i class="fas fa-plus-circle" style="color: #ffa700"></i>
         Inserisci una nuova riga
       </button>
     </div>
@@ -331,4 +331,6 @@ export default {
 .green {
   background-color: green;
 }
+
+
 </style>
