@@ -50,7 +50,7 @@
       <button class= "btn btn-light" @click="showImage4"> 📚 Il tuo habit tracker</button>
     </div>
     <div class= "showImg">
-    <img id= "immagine" src= "'../../assets/Cattura.png'" alt= "todo" style="width: 60%; border-radius: 15px; border:smooth">
+    <img id= "immagine" src= "../../assets/Cattura.png" alt= "todo" style="width: 60%; border-radius: 15px; border:smooth">
       <!---<img id= 'map' src=  "../../assets/Cattura2.png" alt= "map" style="visibility:hidden; width: 60%; border-radius: 15px; position: absolute">
       <img id= 'calendar' src= "" width="280" alt= "calendar" style="visibility:hidden">
       <img id= 'habits' src= "" width="280" alt= "habits" style="visibility:hidden">-->
@@ -243,6 +243,7 @@ export default {
 section:nth-of-type(1) {
   margin-top: 96px;
 }
+
 
 section:nth-of-type(5) {
  height: 600px;
@@ -468,9 +469,7 @@ details{
   #header ul {
     float: none;
   }
-   .row #imm {
-    width: 50%;
-  }
+  
 
   .row {
     justify-content: center;

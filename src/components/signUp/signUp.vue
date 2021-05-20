@@ -49,7 +49,7 @@
             />
           </div>
           Hai già un account?
-          <router-link class="" to="/homepage" style="color: #bd2a3e">Accedi</router-link>
+          <router-link class="" to="/login" style="color: #bd2a3e">Accedi</router-link>
           <br />
           <br />
           <input
