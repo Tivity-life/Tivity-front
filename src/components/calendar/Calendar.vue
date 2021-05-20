@@ -9,7 +9,7 @@
       </p>
     </div>
      <div>
-      <figure style="display: flex; width: 15%"><img src="../../assets/use-case-wiki.png" /></figure>
+      <figure style="width: 15%"><img src="../../assets/use-case-wiki.png" /></figure>
     </div>
   </div>
   <div class="calendar">

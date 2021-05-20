@@ -50,10 +50,8 @@
       <button class= "btn btn-light" @click="showImage4"> 📚 Il tuo habit tracker</button>
     </div>
     <div class= "showImg">
-    <img id= "immagine" src= "../../assets/Cattura.png" alt= "todo" style="width: 60%; border-radius: 15px; border:smooth">
-      <!---<img id= 'map' src=  "../../assets/Cattura2.png" alt= "map" style="visibility:hidden; width: 60%; border-radius: 15px; position: absolute">
-      <img id= 'calendar' src= "" width="280" alt= "calendar" style="visibility:hidden">
-      <img id= 'habits' src= "" width="280" alt= "habits" style="visibility:hidden">-->
+    <img id= "immagine" src= "../../assets/Cattura.png" alt= "todo" style="width: 62%; border-radius: 15px;">
+    <img id= "smartphone" src= "../../assets/Image3.jpg" alt= "smartphone" style= "width: 15%; border-radius: 15px; ">
     </div>
  
   </section>
@@ -177,21 +175,29 @@ export default {
     showImage1() {
       var img= document.getElementById("immagine")
       img.src=  require("../../assets/Cattura.png")
+      var phone= document.getElementById("smartphone")
+      phone.src=  require("../../assets/Image3.jpg")
     }, 
 
      showImage2() {
       var img= document.getElementById("immagine")
       img.src= require("../../assets/Cattura2.png")
+      var phone= document.getElementById("smartphone")
+      phone.src=  require("../../assets/Image4.jpg")
     }, 
 
     showImage3() {
       var img= document.getElementById("immagine")
       img.src= require("../../assets/Cattura3.png")
+      var phone= document.getElementById("smartphone")
+      phone.src=  require("../../assets/Image5.jpg")
     }, 
 
     showImage4() {
       var img= document.getElementById("immagine")
       img.src= require("../../assets/Cattura4.png")
+      var phone= document.getElementById("smartphone")
+      phone.src=  require("../../assets/Image6.jpg")
     }, 
 
 
