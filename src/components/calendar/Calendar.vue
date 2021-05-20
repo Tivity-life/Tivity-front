@@ -270,6 +270,9 @@ async function getEvents(userId) {
 </script>
 
 <style>
+.container {
+  width: 1400px;
+}
 .calendar {
   padding: 20px;
   background: #fff;

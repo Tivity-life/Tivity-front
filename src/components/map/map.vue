@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="text" style="float: left; padding: 15px">
-      <h2 style="padding: 10px; text-align:center;">La mia mappa</h2>
+      <h2 style="padding: 10px; text-align:center;"><span style="font-size: 25 px">🗺️</span> La mia mappa</h2>
       <p style="text-align:center;">
         Hai in mente tanti viaggi da fare in giro per il mondo? 🌎<br />
         Naviga nella mappa, gira il mondo e lascia dei
