@@ -525,7 +525,6 @@ section {
   
 }
 
-  
 }
 
 @media screen and (max-width: 900px) { 
@@ -542,6 +541,10 @@ section:nth-of-type(5) .card{
   height: 380px;
   width: 380px;
   position: inherit;
+}
+
+section:nth-of-type(4) .row-faqs {
+  margin-left: 10px;
 }
 
 }
