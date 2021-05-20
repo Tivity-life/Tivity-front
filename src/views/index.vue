@@ -1,39 +1,27 @@
 <template>
+  <div :class="[menuVisibility ? '' : 'd-none']">
+      <Menu
+      class="sidenav"
+        :username="user ? user.username : ''"
+      />
+  </div>
+
   <div
     :class="[
       menuVisibility
-        ? 'd-flex justify-content-between align-items-stretch'
+        ? isFluidContainer
+          ? 'container-fluid'
+          : 'container'
         : '',
     ]"
+    class="main"
+  
   >
-    <div
-      :class="[menuVisibility ? 'flex-column align-items-stretch' : 'd-none']"
-    >
-      <div :class="[menuVisibility ? '' : 'd-none']">
-        <Menu :username="user? user.username: ''" />
-      </div>
-    </div>
-
-    <div
-      :class="[
-        menuVisibility
-          ? isFluidContainer
-            ? 'container-fluid'
-            : 'container'
-          : '',
-      ]"
-      class="flex-column m"
-      :style="[menuVisibility ? 'max-width: 78%;' : '']"
-    >
-      <router-view
-        :user="user"
-        @user-data="getUserData"
-        @change-section="changeSection"
-      ></router-view>
-    </div>
-    <div :class="[menuVisibility ? 'flex-column' : 'd-none']">
-      <!-- This div is used to align correctly -->
-    </div>
+    <router-view
+      :user="user"
+      @user-data="getUserData"
+      @change-section="changeSection"
+    ></router-view>
   </div>
 </template>
 
@@ -48,15 +36,15 @@ export default {
     log() {
       console.log(this.menuVisibility);
     },
-     async changeSection(destination) {
+    async changeSection(destination) {
       // Manage navigation menu visibility
       if (navigationMenuLocations.includes(destination)) {
         if (!this.user.username) {
-          this.user = await  getUser();
+          this.user = await getUser();
         }
 
         this.menuVisibility = true;
-        destination === "/map" | destination === "/calendar"
+        (destination === "/map") | (destination === "/calendar")
           ? (this.isFluidContainer = true)
           : (this.isFluidContainer = false);
       } else {
@@ -77,3 +65,23 @@ export default {
   },
 };
 </script>
+
+<style>
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 220; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+.main {
+  margin-left: 220px; /* Same as the width of the sidebar */
+  padding: 0px 0px;
+    width: 81%;
+}
+</style>

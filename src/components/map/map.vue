@@ -10,12 +10,11 @@
       </p>
     </div>
     <figure><img src="../../assets/api.jpg" /></figure>
-  </div>
   <l-map
     v-model="zoom"
     v-model:zoom="zoom"
     :center="[centLat, centLon]"
-    style="height: 100%; width: 100%"
+    style="height: 400vh; width: 80px"
     @click="addMarker"
   >
     <l-tile-layer
@@ -120,6 +119,8 @@
       </l-popup>
     </l-marker>
   </l-map>
+    </div>
+
 </template>
 
 <script>

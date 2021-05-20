@@ -1,107 +1,126 @@
 /* eslint-disable */
 <template>
-<div class="container" style= "border-radius: 20px 20px 0% 0%">
-    <div class="text" style="float: left; padding: 15px">
-      <h2 style="padding: 10px; text-align:center;">Calendario <span style="font-size: 30px"> 📅</span></h2>
-      <p style="text-align:center;">
-        Questo è il tuo calendario annuale. Clicca sui giorni, inserisci i tuoi impegni<br>
-        e l'orario! Il giorno di oggi ha un colore diverso da tutti gli altri: riesci a vedere qual è?
-      </p>
-    </div>
-     <div>
-      <figure style="display: flex; width: 15%"><img src="../../assets/use-case-wiki.png" /></figure>
-    </div>
-  </div>
-  <div class="calendar">
-    <div class="full-calendar-header">
-      <div class="header-left">
-        <slot name="header-left"> </slot>
+  <div class="container">
+    <div class="row">
+      <div class="col-10">
+        <div class="text" style="float: left; padding: 15px">
+          <h2 style="padding: 10px; text-align: center">
+            Calendario <span style="font-size: 30px"> 📅</span>
+          </h2>
+          <p style="text-align: center">
+            Questo è il tuo calendario annuale. Clicca sui giorni, inserisci i
+            tuoi impegni<br />
+            e l'orario! Il giorno di oggi ha un colore diverso da tutti gli
+            altri: riesci a vedere qual è?
+          </p>
+        </div>
       </div>
-      <div class="header-center">
-        <span class="prev-month" @click.stop="goPrev">{{ leftArrow }}</span>
-        <span class="title">{{ title }}</span>
-        <span class="next-month" @click.stop="goNext">{{ rightArrow }}</span>
-      </div>
-      <div class="header-right">
-        <slot name="header-right"> </slot>
+      <div class="col-2">
+        <div>
+          <figure style="display: flex; float: left; width: 100%">
+            <img src="../../assets/use-case-wiki.png" />
+          </figure>
+        </div>
       </div>
     </div>
-    <!-- body display date day and events -->
-    <div class="calendar-body">
-      <div class="weeks">
-        <strong class="week" v-for="dayIndex in 7" v-bind:key="dayIndex">{{
-          weekDays[dayIndex - 1]
-        }}</strong>
-      </div>
 
-      <div class="dates" ref="dates">
-        <div class="dates-bg">
-          <div class="week-row" v-for="week in dates" v-bind:key="week">
-            <div
-              class="day-cell"
-              v-for="day in week"
-              v-bind:key="day.target"
-              v-on:click="dayClick(day, $event)"
-              :class="{ today: day.isToday, 'not-cur-month': !day.isCurMonth }"
-            >
-              <p class="day-number">{{ day.monthDay }}</p>
+    <div class="calendar">
+      <br />
+      <div class="full-calendar-header">
+        <div class="header-left">
+          <slot name="header-left"> </slot>
+        </div>
+        <div class="header-center">
+          <span class="prev-month" @click.stop="goPrev">{{ leftArrow }}</span>
+          <span class="title">{{ title }}</span>
+          <span class="next-month" @click.stop="goNext">{{ rightArrow }}</span>
+        </div>
+        <div class="header-right">
+          <slot name="header-right"> </slot>
+        </div>
+      </div>
+      <!-- body display date day and events -->
+      <div class="calendar-body">
+        <div class="weeks">
+          <strong class="week" v-for="dayIndex in 7" v-bind:key="dayIndex">{{
+            weekDays[dayIndex - 1]
+          }}</strong>
+        </div>
+
+        <div class="dates" ref="dates">
+          <div class="dates-bg">
+            <div class="week-row" v-for="week in dates" v-bind:key="week">
               <div
-                class="row event"
-                v-for="event in events[day.target]"
-                v-bind:key="event.target"
+                class="day-cell"
+                v-for="day in week"
+                v-bind:key="day.target"
+                v-on:click="dayClick(day, $event)"
+                :class="{
+                  today: day.isToday,
+                  'not-cur-month': !day.isCurMonth,
+                }"
               >
-                <div class="col eventNameCol">
-                  {{ event.name }}
+                <p class="day-number">{{ day.monthDay }}</p>
+                <div
+                  class="row event"
+                  v-for="event in events[day.target]"
+                  v-bind:key="event.target"
+                >
+                  <div class="col eventNameCol">
+                    {{ event.name }}
+                  </div>
+                  <div class="col">
+                    {{ event.startTime }} - {{ event.endTime }}
+                  </div>
                 </div>
-                <div class="col">
-                  {{ event.startTime }} - {{ event.endTime }}
-                </div>
-              </div>
-              <div
-                v-if="creatingEventOn && creatingEventOn == day.target"
-                @close="creatingEventOn = false"
-                class="input-group"
-              >
-                <input
-                  type="text"
-                  class="form-control eventNameInput"
-                  aria-label="event text"
-                  width="100%"
-                  v-model="eventName"
-                />
-                <div class="input-group secondRowEventInput">
-                  <select
-                    class="form-select"
-                    aria-label="Start"
-                    v-model="selectedStartTime"
-                  >
-                    <option
-                      v-for="time in times"
-                      :value="time"
-                      v-bind:key="time"
-                      >{{ time }}</option
+                <div
+                  v-if="creatingEventOn && creatingEventOn == day.target"
+                  @close="creatingEventOn = false"
+                  class="input-group"
+                >
+                  <input
+                    type="text"
+                    class="form-control eventNameInput"
+                    aria-label="event text"
+                    width="100%"
+                    v-model="eventName"
+                  />
+                  <div class="input-group secondRowEventInput">
+                    <select
+                      class="form-select"
+                      aria-label="Start"
+                      v-model="selectedStartTime"
                     >
-                  </select>
-                  <select
-                    class="form-select"
-                    aria-label="End"
-                    v-model="selectedEndTime"
-                  >
-                    <option
-                      v-for="time in times"
-                      :value="time"
-                      v-bind:key="time"
-                      >{{ time }}</option
+                      <option
+                        v-for="time in times"
+                        :value="time"
+                        v-bind:key="time"
+                      >
+                        {{ time }}
+                      </option>
+                    </select>
+                    <select
+                      class="form-select"
+                      aria-label="End"
+                      v-model="selectedEndTime"
                     >
-                  </select>
-                  <div class="input-group-append">
-                    <button
-                      class="btn btn-primary"
-                      type="button"
-                      v-on:click="addEvent(day, $event)"
-                    >
-                      +
-                    </button>
+                      <option
+                        v-for="time in times"
+                        :value="time"
+                        v-bind:key="time"
+                      >
+                        {{ time }}
+                      </option>
+                    </select>
+                    <div class="input-group-append">
+                      <button
+                        class="btn btn-primary"
+                        type="button"
+                        v-on:click="addEvent(day, $event)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -115,11 +134,7 @@
 
 <script>
 import moment from "moment";
-import {
-  getDates,
-  getEvents,
-  getTimes
-} from "./utils.js";
+import { getDates, getEvents, getTimes } from "./utils.js";
 
 export default {
   name: "Calendar",
@@ -138,9 +153,7 @@ export default {
   },
   data() {
     return {
-      currentMonth: moment()
-        .locale(this.locale)
-        .startOf("month"),
+      currentMonth: moment().locale(this.locale).startOf("month"),
       weekDays: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"],
       leftArrow: "-",
       rightArrow: "+",
@@ -187,7 +200,7 @@ export default {
         },
         body: JSON.stringify(event),
       })
-        .then(res => {
+        .then((res) => {
           if (res.status !== 200) {
             return alert("Error, please try later");
           }
@@ -197,9 +210,9 @@ export default {
           this.selectedEndTime = "";
           this.creatingEventOn = false;
 
-          getEvents(this.user.id).then(events => (this.events = events));
+          getEvents(this.user.id).then((events) => (this.events = events));
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("Something went wrong", err);
         });
     },
@@ -211,16 +224,12 @@ export default {
     },
     goPrev() {
       this.changeMonth(
-        moment(this.currentMonth)
-          .subtract(1, "months")
-          .startOf("month")
+        moment(this.currentMonth).subtract(1, "months").startOf("month")
       );
     },
     goNext() {
       this.changeMonth(
-        moment(this.currentMonth)
-          .add(1, "months")
-          .startOf("month")
+        moment(this.currentMonth).add(1, "months").startOf("month")
       );
     },
   },
@@ -229,13 +238,13 @@ export default {
     this.changeMonth(this.currentMonth);
 
     if (this.$props.user) {
-      getEvents(this.$props.user.id).then(events => (this.events = events));
+      getEvents(this.$props.user.id).then((events) => (this.events = events));
     }
   },
   watch: {
     user(u) {
       console.log(u);
-      getEvents(u.id).then(events => (this.events = events));
+      getEvents(u.id).then((events) => (this.events = events));
     },
   },
   emits: ["change-section"],
