@@ -1,5 +1,17 @@
 /* eslint-disable */
 <template>
+<div class="container" style= "border-radius: 20px 20px 0% 0%">
+    <div class="text" style="float: left; padding: 15px">
+      <h2 style="padding: 10px; text-align:center;">Calendario <span style="font-size: 30px"> 📅</span></h2>
+      <p style="text-align:center;">
+        Questo è il tuo calendario annuale. Clicca sui giorni, inserisci i tuoi impegni<br>
+        e l'orario! Il giorno di oggi ha un colore diverso da tutti gli altri: riesci a vedere qual è?
+      </p>
+    </div>
+     <div>
+      <figure style="display: flex; width: 15%"><img src="../../assets/use-case-wiki.png" /></figure>
+    </div>
+  </div>
   <div class="calendar">
     <div class="full-calendar-header">
       <div class="header-left">
@@ -270,9 +282,6 @@ async function getEvents(userId) {
 </script>
 
 <style>
-.container {
-  width: 1400px;
-}
 .calendar {
   padding: 20px;
   background: #fff;
