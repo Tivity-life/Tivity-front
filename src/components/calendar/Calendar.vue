@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-<div class="container" style= "border-radius: 20px 20px 0% 0%">
+<div class="container" style= "width: 100%; border-radius: 20px 20px 0% 0%">
     <div class="text" style="float: left; padding: 15px">
       <h2 style="padding: 10px; text-align:center;">Calendario <span style="font-size: 30px"> 📅</span></h2>
       <p style="text-align:center;">
@@ -282,6 +282,7 @@ async function getEvents(userId) {
 </script>
 
 <style>
+
 .calendar {
   padding: 20px;
   background: #fff;

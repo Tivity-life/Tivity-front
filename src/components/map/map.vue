@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style= "border-radius: 20px 20px 0% 0%">
+  <div class="container" style= "width: 100%; border-radius: 20px 20px 0% 0%">
     <div class="text" style="float: left; padding: 15px">
       <h2 style="padding: 10px; text-align:center;"><span style="font-size: 25 px">🗺️</span> La mia mappa</h2>
       <p style="text-align:center;">
