@@ -513,8 +513,8 @@ section:nth-of-type(1) {
   height: 600px;
 }
 
-section:nth-of-type(5) {
- height: 600px;
+section:nth-of-type(4) {
+ height: 800px;
 }
 
 section {
@@ -528,7 +528,23 @@ section {
   
 }
 
+@media screen and (max-width: 900px) { 
+  
+section:nth-of-type(5) {
+ height: 1400px;
+}
 
+section:nth-of-type(5) .column{
+  display: contents;
+}
+
+section:nth-of-type(5) .card{
+  height: 380px;
+  width: 380px;
+  position: inherit;
+}
+
+}
 
 
 
