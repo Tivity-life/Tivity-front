@@ -44,18 +44,17 @@
 
   <section>
     <div id= "nav">
-      <button class= "btn btn-light" @click="showImage('todo')">✔️ To Do </button>|
-      <button class= "btn btn-light" @click="showImage('map')">🌎 La tua mappa</button> |
-      <button class= "btn btn-light" @click="showImage('calendar')">🗓️ Calendario</button> |
-      <button class= "btn btn-light" @click="showImage('habits')"> 📚 Il tuo habit tracker</button>
+      <button class= "btn btn-light" @click="showImage1">✔️ To Do </button>|
+      <button class= "btn btn-light" @click="showImage2">🌎 La tua mappa</button> |
+      <button class= "btn btn-light" @click="showImage3">🗓️ Calendario</button> |
+      <button class= "btn btn-light" @click="showImage4"> 📚 Il tuo habit tracker</button>
     </div>
     <div class= "showImg">
-      <img id= 'todo' src= "" alt= "todo" style="visibility: visible; width: 70%">
-      <img id= 'map' src= "" width="280" alt= "map" style="visibility:hidden">
+    <img id= "immagine" src= "'../../assets/Cattura.png'" alt= "todo" style="width: 60%; border-radius: 15px; border:smooth">
+      <!---<img id= 'map' src=  "../../assets/Cattura2.png" alt= "map" style="visibility:hidden; width: 60%; border-radius: 15px; position: absolute">
       <img id= 'calendar' src= "" width="280" alt= "calendar" style="visibility:hidden">
-      <img id= 'habits' src= "" width="280" alt= "habits" style="visibility:hidden">
+      <img id= 'habits' src= "" width="280" alt= "habits" style="visibility:hidden">-->
     </div>
-  
  
   </section>
 
@@ -166,7 +165,7 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "Home", 
   emits: ["disable-menu"],
    created() {
     this.$emit('disable-menu');
@@ -175,14 +174,27 @@ export default {
   el: '#nav',
   
   methods: {
-    showImage(img) {
-      document.getElementById('todo').style.visibility='hidden';
-      document.getElementById('calendar').style.visibility='hidden';
-      document.getElementById('habits').style.visibility='hidden';
-      document.getElementById('map').style.visibility='hidden';
+    showImage1() {
+      var img= document.getElementById("immagine")
+      img.src=  require("../../assets/Cattura.png")
+    }, 
 
-      document.getElementById(img).style.visibility='visible';
-    },
+     showImage2() {
+      var img= document.getElementById("immagine")
+      img.src= require("../../assets/Cattura2.png")
+    }, 
+
+    showImage3() {
+      var img= document.getElementById("immagine")
+      img.src= require("../../assets/Cattura3.png")
+    }, 
+
+    showImage4() {
+      var img= document.getElementById("immagine")
+      img.src= require("../../assets/Cattura4.png")
+    }, 
+
+
 
     scroll(id) {
       let e = document.getElementById(id);
