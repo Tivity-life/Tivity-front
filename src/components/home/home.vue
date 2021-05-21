@@ -25,7 +25,7 @@
       <div class="text-center pt-6 mt-5">
         <div class="row">
           <div class="col-md-2 text-center"></div>
-          <img id= "imm" src="../../assets/prova.png" style= "width: 38%;"/>
+          <img id= "imm" src="../../assets/prova.png"/>
           <div class="col-md-4 text-center">
             <br><br>
             <h2 style="font-size: 55px">Tivity<span style= "color: #bd2a3e">.Me</span></h2>
@@ -427,6 +427,10 @@ details{
 
 }
 
+#imm {
+  width: 38%;
+}
+
 #immagini {
   transition: 0.8s;
   padding: 8px;
@@ -511,23 +515,27 @@ details{
     flex-wrap: wrap;
   }
 
-section:nth-of-type(1) {
-  margin-top: 96px;
-  height: 600px;
-}
+  section:nth-of-type(1) {
+    margin-top: 0px;
+    height: 600px;
+  }
 
-section:nth-of-type(4) {
- height: 800px;
-}
+  #imm {
+     width: 62%
+  }
 
-section {
-  height: 380px;
-  padding: 16 px;
-  font-size: 30px;
-  overflow: hidden;
-  
-}
-}
+  section:nth-of-type(4) {
+  height: 800px;
+  }
+
+  section {
+    height: 380px;
+    padding: 16 px;
+    font-size: 30px;
+    overflow: hidden;
+    
+  }
+  }
 
 @media screen and (max-width: 930px) { 
   
