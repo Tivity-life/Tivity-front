@@ -247,12 +247,10 @@ export default {
 
 }
 
-
 section:nth-of-type(1) {
   margin-top: 96px;
  
 }
-
 section {
   height: 600px;
   padding: 16 px;
@@ -461,7 +459,6 @@ details{
   border-bottom:2px solid #1e2f45;
   border-radius: 0px;
 }
-
 
 @media screen and (max-width: 765px) {
   #header #logo {
