@@ -27,7 +27,14 @@
       :style="[menuVisibility ? 'max-width: 78%;' : '']"
     >
       <svg
-        v-if="isMobile() && !menuVisibility && (this.$route.name == 'map' | this.$route.name == 'calendar' | this.$route.name == 'habits' | this.$route.name == 'to-do')"
+        v-if="
+          isMobile() &&
+            !menuVisibility &&
+            (this.$route.name == 'map') |
+              (this.$route.name == 'calendar') |
+              (this.$route.name == 'habits') |
+              (this.$route.name == 'to-do')
+        "
         xmlns="http://www.w3.org/2000/svg"
         width="30"
         :class="[menuVisibility ? 'd-none ' : '']"

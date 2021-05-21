@@ -446,7 +446,7 @@ export default {
 .descr-todo {
   text-align: left;
 }
-h2 {
+.empty-state__title {
   text-align: center;
 }
 p {
