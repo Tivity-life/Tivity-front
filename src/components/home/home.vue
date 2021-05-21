@@ -459,6 +459,7 @@ details{
 
 #bottone:hover{
   border-bottom:2px solid #1e2f45;
+  border-radius: 0px;
 }
 
 
