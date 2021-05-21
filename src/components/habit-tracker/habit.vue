@@ -346,7 +346,7 @@ export default {
     flex-direction: column;
   }
   .container {
-    width:calc(100% -30%);
+    width:100%;
     background-color: white;
   }
 
