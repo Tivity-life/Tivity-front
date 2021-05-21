@@ -20,7 +20,6 @@
         </li>
       </ul>
 </nav>
-
 <nav id= "principale">
   <section>
       <div class="text-center pt-6 mt-5">
@@ -200,8 +199,6 @@ export default {
       phone.src=  require("../../assets/Image6.jpg")
     }, 
 
-
-
     scroll(id) {
       let e = document.getElementById(id);
       e.scrollIntoView({
@@ -217,6 +214,8 @@ export default {
 
     
   },
+ 
+
   
   
 }
@@ -248,8 +247,10 @@ export default {
 
 }
 
+
 section:nth-of-type(1) {
   margin-top: 96px;
+ 
 }
 
 section {
@@ -432,6 +433,7 @@ details{
   transition: 0.8s;
   padding: 8px;
   flex-wrap: wrap;
+  position: inherit;
 }
 
 #immagini:hover {
@@ -518,16 +520,15 @@ section:nth-of-type(4) {
 }
 
 section {
-  height: 450px;
+  height: 380px;
   padding: 16 px;
   font-size: 30px;
   overflow: hidden;
   
 }
-
 }
 
-@media screen and (max-width: 900px) { 
+@media screen and (max-width: 930px) { 
   
 section:nth-of-type(5) {
  height: 1400px;
@@ -542,6 +543,7 @@ section:nth-of-type(5) .card{
   width: 380px;
   position: inherit;
 }
+
 
 section:nth-of-type(4) .row-faqs {
   margin-left: 10px;
