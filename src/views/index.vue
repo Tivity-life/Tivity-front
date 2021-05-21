@@ -1,18 +1,13 @@
 <template>
-  <div
-    :class="[
-      menuVisibility
-        ? 'd-flex justify-content-between align-items-stretch'
-        : '',
-    ]"
-  >
-    <div
-      :class="[menuVisibility ? 'flex-column align-items-stretch' : 'd-none']"
-    >
-      <div :class="[menuVisibility ? '' : 'd-none']">
-        <Menu :username="user? user.username: ''" />
-      </div>
-    </div>
+  <div :class="[menuVisibility ? 'sidebar true' : 'd-none']">
+    <Menu
+      @close-menu="menuVisibility = false"
+      :username="user ? user.username : ''"
+    />
+  </div>
+
+  <div :class="[menuVisibility ? 'd-flex justify-content-between ' : 'd-flex justify-content-center align-items-stretch']">
+    <div :class="[menuVisibility ? 'sidebar flex-column ' : 'd-none']"></div>
 
     <div
       :class="[
@@ -25,6 +20,22 @@
       class="flex-column m"
       :style="[menuVisibility ? 'max-width: 78%;' : '']"
     >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        :class="[menuVisibility ? 'd-none ' : '']"
+        height="30"
+        fill="currentColor"
+        class="bi bi-arrow-right mt-3 ms-4"
+        @click="menuVisibility = true"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+        />
+      </svg>
+
       <router-view
         :user="user"
         @user-data="getUserData"
@@ -48,15 +59,15 @@ export default {
     log() {
       console.log(this.menuVisibility);
     },
-     async changeSection(destination) {
+    closeMenu() {},
+    async changeSection(destination) {
       // Manage navigation menu visibility
       if (navigationMenuLocations.includes(destination)) {
         if (!this.user.username) {
-          this.user = await  getUser();
+          this.user = await getUser();
         }
-
-        this.menuVisibility = true;
-        destination === "/map" | destination === "/calendar"
+        // this.menuVisibility = true;
+        (destination === "/map") | (destination === "/calendar")
           ? (this.isFluidContainer = true)
           : (this.isFluidContainer = false);
       } else {
@@ -77,3 +88,14 @@ export default {
   },
 };
 </script>
+
+<style>
+.true {
+  position: fixed;
+}
+
+.sidebar {
+  width: 220px;
+  height: 100vh;
+}
+</style>

@@ -1,15 +1,21 @@
-<template>
-  <div class="container" style= "width: 100%; border-radius: 20px 20px 0% 0%">
-    <div class="text" style="float: left; padding: 15px">
-      <h2 style="padding: 10px; text-align:center;"><span style="font-size: 25 px">🗺️</span> La mia mappa</h2>
-      <p style="text-align:center;">
+<template     style="height: 100%; width: 100%"
+>
+  <div class="container row" style="border-radius: 20px 20px 0% 0%">
+    <div class="text col" style="float: left; padding: 15px">
+      <h2 style="padding: 10px; text-align: center">
+        <span style="font-size: 25 px">🗺️</span> La mia mappa
+      </h2>
+      <p style="text-align: center">
+
         Hai in mente tanti viaggi da fare in giro per il mondo? 🌎<br />
         Naviga nella mappa, gira il mondo e lascia dei
         <strong>pin</strong> sopra i luoghi che non puoi perdere!<br />Inserisci
         le note sui pin per mantenere i tuoi ricordi sempre con te.
       </p>
     </div>
-    <figure><img src="../../assets/api.jpg" /></figure>
+    <div class="col">
+      <figure><img src="../../assets/api.jpg" /></figure>
+    </div>
   </div>
   <l-map
     v-model="zoom"
@@ -43,7 +49,10 @@
           placeholder="Add a Note!"
         />
 
-        <div class="align-center" style="height: 100%; width: 200px; padding: 5px">
+        <div
+          class="align-center"
+          style="height: 100%; width: 200px; padding: 5px"
+        >
           <!-- Add note button. -->
           <svg
             @click="
@@ -56,7 +65,6 @@
             fill="currentColor"
             :class="[!postsManager.addingPost ? 'visible' : 'd-none']"
             viewBox="0 0 16 16"
-            
           >
             <path
               d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
@@ -65,7 +73,7 @@
               d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
             />
           </svg>
-           <!-- Exit from addPost mode button. -->
+          <!-- Exit from addPost mode button. -->
           <button
             type="button"
             @click="cancel()"
@@ -73,9 +81,7 @@
               postsManager.addingPost ? 'visible' : 'd-none',
               'btn btn-outline-dark',
             ]"
-
-            style="border-color:white; border-radius: 70px; "
-            
+            style="border-color: white; border-radius: 70px"
           >
             Cancel
           </button>
@@ -87,7 +93,7 @@
               postsManager.addingPost ? 'visible' : 'd-none',
               'btn btn-outline-success',
             ]"
-            style= "float:right; border-color: white; border-radius: 70px;"
+            style="float: right; border-color: white; border-radius: 70px"
           >
             Add
           </button>
@@ -334,54 +340,12 @@ export default {
 }
 
 .map {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* The actual Card */
-.map .cardPost {
   position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
 }
 
-.map .btn-sm {
-  background: white;
-}
-
-/* Card arrow */
-.map .cardPost::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
-
-/* Add animation (fade in the Card) */
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 figure {
   display: flex;
@@ -393,3 +357,4 @@ figure {
   align-items: center;
 }
 </style>
+scoped
