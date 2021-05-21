@@ -6,7 +6,13 @@
     />
   </div>
 
-  <div :class="[menuVisibility ? 'd-flex justify-content-between ' : 'd-flex justify-content-center align-items-stretch']">
+  <div
+    :class="[
+      menuVisibility
+        ? 'd-flex justify-content-between '
+        : 'd-flex justify-content-center align-items-stretch',
+    ]"
+  >
     <div :class="[menuVisibility ? 'sidebar flex-column ' : 'd-none']"></div>
 
     <div
@@ -21,6 +27,7 @@
       :style="[menuVisibility ? 'max-width: 78%;' : '']"
     >
       <svg
+        v-if="isMobile() && !menuVisibility"
         xmlns="http://www.w3.org/2000/svg"
         width="30"
         :class="[menuVisibility ? 'd-none ' : '']"
@@ -66,13 +73,19 @@ export default {
         if (!this.user.username) {
           this.user = await getUser();
         }
-        // this.menuVisibility = true;
+
+        if (!this.isMobile()) this.menuVisibility = true;
         (destination === "/map") | (destination === "/calendar")
           ? (this.isFluidContainer = true)
           : (this.isFluidContainer = false);
       } else {
         this.menuVisibility = false;
       }
+    },
+    isMobile() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
     },
     getUserData(user) {
       this.user = user;

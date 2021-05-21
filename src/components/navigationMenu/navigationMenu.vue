@@ -2,7 +2,6 @@
   <div
     class="d-flex flex-column p-3 pe-3 text-white bg-dark"
     style="width: 100%; height: 100vh"
-
   >
     <div class="justify-content-between">
       <a href="/" class="fs-4 ps-4 mb-md-0 text-white text-decoration-none">
@@ -42,8 +41,10 @@
         </ul>
       </div>
     </div>
+    <!-- Close menu icon. -->
     <div class="col align-self-end mt-5">
       <svg
+        v-if="isMobile()"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -60,7 +61,6 @@
     </div>
     <hr />
     <div style="text-align: center">
-      <!-- TODO: connect to be and take the name with token -->
       Benvenuto
       <span style="color: #bd2a3e">{{ username }}</span
       >!
@@ -108,7 +108,11 @@ export default {
         if (!getCookie("tivityToken")) this.$router.push("/");
       }
     },
-
+    isMobile() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+    },
     removeUser() {
       this.$router.push("/");
       sessionStorage.clear();
