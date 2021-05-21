@@ -43,10 +43,10 @@
 
   <section>
     <div id= "nav">
-      <button class= "btn btn-light" @click="showImage1">✔️ To Do </button>|
-      <button class= "btn btn-light" @click="showImage2">🌎 La tua mappa</button> |
-      <button class= "btn btn-light" @click="showImage3">🗓️ Calendario</button> |
-      <button class= "btn btn-light" @click="showImage4"> 📚 Il tuo habit tracker</button>
+      <button class= "btn btn-light" id= "bottone" @click="showImage1">✔️ To Do </button>|
+      <button class= "btn btn-light" id= "bottone" @click="showImage2">🌎 La tua mappa</button> |
+      <button class= "btn btn-light" id= "bottone"  @click="showImage3">🗓️ Calendario</button> |
+      <button class= "btn btn-light" id= "bottone" @click="showImage4"> 📚 Il tuo habit tracker</button>
     </div>
     <div class= "showImg">
     <img id= "immagine" src= "../../assets/Cattura.png" alt= "todo" style="width: 60%; border-radius: 15px;">
@@ -267,7 +267,7 @@ section:nth-of-type(odd) {
 }
 
 section:nth-of-type(even) {
-  background-color: mocassin;
+  background-color:mocassin;
   color: rgb(0, 0, 0);
     
 }
@@ -457,6 +457,9 @@ details{
   justify-content: center;
 }
 
+#bottone:hover{
+  border-bottom:2px solid #1e2f45;
+}
 
 
 @media screen and (max-width: 765px) {
