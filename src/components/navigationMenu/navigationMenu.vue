@@ -2,6 +2,7 @@
   <div
     class="d-flex flex-column p-3 pe-3 text-white bg-dark"
     style="width: 100%; height: 100vh"
+
   >
     <div class="justify-content-between">
       <a href="/" class="fs-4 ps-4 mb-md-0 text-white text-decoration-none">

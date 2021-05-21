@@ -20,7 +20,6 @@
         </li>
       </ul>
 </nav>
-
 <nav id= "principale">
   <section>
       <div class="text-center pt-6 mt-5">
@@ -44,18 +43,15 @@
 
   <section>
     <div id= "nav">
-      <button class= "btn btn-light" @click="showImage('todo')">✔️ To Do </button>|
-      <button class= "btn btn-light" @click="showImage('map')">🌎 La tua mappa</button> |
-      <button class= "btn btn-light" @click="showImage('calendar')">🗓️ Calendario</button> |
-      <button class= "btn btn-light" @click="showImage('habits')"> 📚 Il tuo habit tracker</button>
+      <button class= "btn btn-light" @click="showImage1">✔️ To Do </button>|
+      <button class= "btn btn-light" @click="showImage2">🌎 La tua mappa</button> |
+      <button class= "btn btn-light" @click="showImage3">🗓️ Calendario</button> |
+      <button class= "btn btn-light" @click="showImage4"> 📚 Il tuo habit tracker</button>
     </div>
     <div class= "showImg">
-      <img id= 'todo' src= "" alt= "todo" style="visibility: visible; width: 70%">
-      <img id= 'map' src= "" width="280" alt= "map" style="visibility:hidden">
-      <img id= 'calendar' src= "" width="280" alt= "calendar" style="visibility:hidden">
-      <img id= 'habits' src= "" width="280" alt= "habits" style="visibility:hidden">
+    <img id= "immagine" src= "../../assets/Cattura.png" alt= "todo" style="width: 60%; border-radius: 15px;">
+    <img id= "smartphone" src= "../../assets/Image3.jpg" alt= "smartphone" style= "width: 15%; border-radius: 23px;">
     </div>
-  
  
   </section>
 
@@ -166,7 +162,7 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "Home", 
   emits: ["disable-menu"],
    created() {
     this.$emit('disable-menu');
@@ -175,14 +171,33 @@ export default {
   el: '#nav',
   
   methods: {
-    showImage(img) {
-      document.getElementById('todo').style.visibility='hidden';
-      document.getElementById('calendar').style.visibility='hidden';
-      document.getElementById('habits').style.visibility='hidden';
-      document.getElementById('map').style.visibility='hidden';
+    showImage1() {
+      var img= document.getElementById("immagine")
+      img.src=  require("../../assets/Cattura.png")
+      var phone= document.getElementById("smartphone")
+      phone.src=  require("../../assets/Image3.jpg")
+    }, 
 
-      document.getElementById(img).style.visibility='visible';
-    },
+     showImage2() {
+      var img= document.getElementById("immagine")
+      img.src= require("../../assets/Cattura2.png")
+      var phone= document.getElementById("smartphone")
+      phone.src=  require("../../assets/Image4.jpg")
+    }, 
+
+    showImage3() {
+      var img= document.getElementById("immagine")
+      img.src= require("../../assets/Cattura3.png")
+      var phone= document.getElementById("smartphone")
+      phone.src=  require("../../assets/Image5.jpg")
+    }, 
+
+    showImage4() {
+      var img= document.getElementById("immagine")
+      img.src= require("../../assets/Cattura4.png")
+      var phone= document.getElementById("smartphone")
+      phone.src=  require("../../assets/Image6.jpg")
+    }, 
 
     scroll(id) {
       let e = document.getElementById(id);
@@ -195,9 +210,13 @@ export default {
     
     linkPage() {
       window.open('https://github.com/Tivity-life/Tivity-front')
-    }
+    },
+
     
   },
+ 
+
+  
   
 }
 
@@ -228,12 +247,10 @@ export default {
 
 }
 
+
 section:nth-of-type(1) {
   margin-top: 96px;
-}
-
-section:nth-of-type(5) {
- height: 600px;
+ 
 }
 
 section {
@@ -416,6 +433,7 @@ details{
   transition: 0.8s;
   padding: 8px;
   flex-wrap: wrap;
+  position: inherit;
 }
 
 #immagini:hover {
@@ -438,7 +456,8 @@ details{
   margin-right: 300px; 
   justify-content: center;
 }
-* {box-sizing: border-box;}
+
+
 
 @media screen and (max-width: 765px) {
   #header #logo {
@@ -456,9 +475,6 @@ details{
   #header ul {
     float: none;
   }
-   .row #imm {
-    width: 50%;
-  }
 
   .row {
     justify-content: center;
@@ -474,12 +490,17 @@ details{
 
 
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 420px) {
 
   #header {
     flex-direction: column;
     position: inherit;
   }
+
+  #header #logo {
+    width: 100%
+  }
+
   #header ul {
     float: none;
     display: flex;
@@ -489,10 +510,46 @@ details{
     flex-wrap: wrap;
   }
 
+section:nth-of-type(1) {
+  margin-top: 96px;
+  height: 600px;
+}
+
+section:nth-of-type(4) {
+ height: 800px;
+}
+
+section {
+  height: 380px;
+  padding: 16 px;
+  font-size: 30px;
+  overflow: hidden;
   
+}
+}
+
+@media screen and (max-width: 930px) { 
+  
+section:nth-of-type(5) {
+ height: 1400px;
+}
+
+section:nth-of-type(5) .column{
+  display: contents;
+}
+
+section:nth-of-type(5) .card{
+  height: 380px;
+  width: 380px;
+  position: inherit;
 }
 
 
+section:nth-of-type(4) .row-faqs {
+  margin-left: 10px;
+}
+
+}
 
 
 

@@ -1,8 +1,8 @@
 <template>
   <div class="m-4" id="todolist">
-    <h1 class="app-title">Cose da fare<span style= "font-size: 35px"> ✏️ </span></h1>
+    <div class="app-title">Cose da fare<span style= "font-size: 35px"> ✏️ </span></div>
     <div>
-      <figure style="display: flex"><img src="../../assets/prova4.jpg" /></figure>
+      <figure style=""><img src="../../assets/prova4.jpg" /></figure>
     </div>
     <div class= "descr-todo">
     Usa questa pagina per appuntarti le cose che non vuoi dimenticarti.
@@ -431,8 +431,12 @@ export default {
 .container {
   width: 100%;
 }
-h1 {
+.app-title {
   font-weight: bold;
+  font-size: 40px;
+}
+.descr-todo {
+  text-align: left;
 }
 h2 {
   text-align: center;
@@ -479,4 +483,17 @@ h5 {
 #show {
   text-align: center;
 }
+
+@media screen and (max-width: 480px) {
+  figure {
+    width:40%;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  figure {
+    width:25%;
+  }
+}
+
 </style>

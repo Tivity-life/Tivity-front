@@ -6,6 +6,7 @@
         <span style="font-size: 25 px">🗺️</span> La mia mappa
       </h2>
       <p style="text-align: center">
+
         Hai in mente tanti viaggi da fare in giro per il mondo? 🌎<br />
         Naviga nella mappa, gira il mondo e lascia dei
         <strong>pin</strong> sopra i luoghi che non puoi perdere!<br />Inserisci
