@@ -535,7 +535,7 @@ details{
     overflow: hidden;
     
   }
-  }
+}
 
 @media screen and (max-width: 930px) { 
   
@@ -556,6 +556,16 @@ section:nth-of-type(5) .card{
 
 section:nth-of-type(4) .row-faqs {
   margin-left: 10px;
+}
+
+section:nth-of-type(even) {
+  background-color:  #fdf5f2;
+  color: rgb(0, 0, 0);
+    
+}
+
+#bottone {
+  background-color: #fdf5f2;
 }
 
 }
