@@ -254,7 +254,12 @@ export default {
       }
       
       else {
-      this.datachart= this.datachart.splice(i, 1);
+        var app= []
+        for (var i in this.weekDays) {
+          app.push([this.weekDays[i].insert, this.weekDays[i].n])
+          console.log(app)
+        }
+        this.datachart = app
       }
       
     },
