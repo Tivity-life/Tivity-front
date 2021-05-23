@@ -1,12 +1,10 @@
-<template     style="height: 100%; width: 100%"
->
+<template>
   <div class="container row" style="border-radius: 20px 20px 0% 0%">
     <div class="text col" style="float: left; padding: 15px">
       <h2 style="padding: 10px; text-align: center">
         <span style="font-size: 25 px">🗺️</span> La mia mappa
       </h2>
       <p style="text-align: center">
-
         Hai in mente tanti viaggi da fare in giro per il mondo? 🌎<br />
         Naviga nella mappa, gira il mondo e lascia dei
         <strong>pin</strong> sopra i luoghi che non puoi perdere!<br />Inserisci
@@ -18,14 +16,13 @@
     </div>
   </div>
   <l-map
-    v-model="zoom"
     v-model:zoom="zoom"
     :center="[centLat, centLon]"
     style="height: 100%; width: 100%"
     @click="addMarker"
   >
     <l-tile-layer
-      url="https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=tT3HEqcxv90g1FSDwwOS"
+      url="https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=tT3HEqcxv90g1FSDwwOS"
     ></l-tile-layer>
     <l-marker
       v-for="(marker, index) in markers"
@@ -149,20 +146,8 @@ export default {
       zoom: 6,
       centLat: 41.541,
       centLon: 12.29,
-      markers: [
-        {
-          id: "dbec2e89-08e9-41b1-850a-0dd23a098cc8",
-          posLat: 42.541,
-          posLon: 13.29,
-          posts: ["Terremoto :'(", "Ma che buono il cibo!"],
-        },
-        {
-          id: "dbec2e89-08e9-41b1-850a-0dd23a098cc8",
-          posLat: 42.541,
-          posLon: 11.29,
-          posts: [],
-        },
-      ],
+      markers: [],
+      updated: false,
       postsManager: {
         addingPost: false,
         isMarkerActive: false,
@@ -192,6 +177,13 @@ export default {
       }
     },
     addMarker(event) {
+      if (!event.latlng) {
+        return;
+      }
+
+      localStorage.setItem("/tivity/lastPositionMaplat", event.latlng.lat);
+      localStorage.setItem("/tivity/lastPositionMaplng", event.latlng.lng);
+
       if (this.postsManager.isMarkerActive) {
         this.postsManager.isMarkerActive = false;
         this.postsManager.clickOutsideMap = true;
@@ -230,8 +222,6 @@ export default {
         });
     },
     removeMarker(index, markerId) {
-      console.log("startRemove");
-
       fetch(process.env.VUE_APP_API_URL + "api/user/removeMarker", {
         method: "POST",
         mode: "cors",
@@ -241,7 +231,6 @@ export default {
         body: JSON.stringify({ markerId: markerId }),
       })
         .then((res) => {
-          console.log(res);
           if (res.status !== 200) {
             return alert("Error, please try later");
           }
@@ -251,6 +240,7 @@ export default {
         });
       // TODO: move into fetch  positive response
       // Remove marker from local storage
+
       this.markers.splice(index, 1);
     },
     addPost(index) {
@@ -281,7 +271,6 @@ export default {
       }
     },
     deletePost(index, markerId) {
-      console.log(index, markerId);
       if (confirm("Are you sure?")) {
         fetch(process.env.VUE_APP_API_URL + "api/user/deletePost", {
           method: "POST",
@@ -312,8 +301,17 @@ export default {
   },
   emits: ["change-section"],
   async created() {
+    const lat = localStorage.getItem("/tivity/lastPositionMaplat");
+    const lng = localStorage.getItem("/tivity/lastPositionMaplng");
+    if (lat && lng) {
+      this.centLat = lat;
+      this.centLon = lng;
+    }
+
+    this.updated = false;
     if (this.$props.user.id) {
       const markers = await getMarkers(this.$props.user.id);
+      this.markers = [];
       for (const marker of markers) {
         this.markers.push(marker);
       }
@@ -321,11 +319,13 @@ export default {
     this.$emit("change-section", "/map");
   },
   async updated() {
-    if (this.$props.user.id) {
+    if (this.$props.user.id && !this.updated) {
       const markers = await getMarkers(this.$props.user.id);
+      this.markers = [];
       for (const marker of markers) {
         this.markers.push(marker);
       }
+      this.updated = true;
     }
   },
 };
@@ -338,14 +338,6 @@ export default {
 .container {
   width: 100%;
 }
-
-.map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-}
-
 
 figure {
   display: flex;

@@ -49,7 +49,9 @@
             />
           </div>
           Hai già un account?
-          <router-link class="" to="/login" style="color: #bd2a3e">Accedi</router-link>
+          <router-link class="" to="/login" style="color: #bd2a3e"
+            >Accedi</router-link
+          >
           <br />
           <br />
           <input
@@ -105,6 +107,8 @@ export default {
           }
 
           alert("Registrazione completata, ora puoi accedere!");
+          sessionStorage.setItem("first-login", true);
+          localStorage.removeItem("tivityAutoLogin");
           this.$router.push("login");
         })
         .catch((err) => {
@@ -116,7 +120,6 @@ export default {
   created() {
     this.$emit("disable-menu");
   },
-
 };
 </script>
 

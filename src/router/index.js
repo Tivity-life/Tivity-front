@@ -1,5 +1,6 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomePage from '../components/home/home.vue'
+import { createRouter, createWebHashHistory } from "vue-router";
+import HomePage from "../components/home/home.vue";
+import { navigationMenuLocations } from "./consts";
 
 const routes = [
   {
@@ -8,9 +9,9 @@ const routes = [
     component: HomePage,
   },
   {
-    path: '/signUp',
-    name: 'signUp',
-    component: () => import('../components/signUp/signUp.vue')
+    path: "/signUp",
+    name: "signUp",
+    component: () => import("../components/signUp/signUp.vue"),
   },
   {
     path: "/login",
@@ -61,11 +62,13 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
-})
+  routes,
+});
 // Save in the local storage each last movement of the router.
 router.afterEach((to, from, next) => {
   localStorage.setItem("/tivity/lastPosition", from.path);
+  if (navigationMenuLocations.includes(to.path))
+    localStorage.setItem("/tivity/lastMapPosition", to.path);
 });
 
-export default router
+export default router;

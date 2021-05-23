@@ -9,7 +9,7 @@
   <div
     :class="[
       menuVisibility
-        ? 'd-flex justify-content-between '
+        ? 'd-flex  '
         : 'd-flex justify-content-center align-items-stretch',
     ]"
   >
@@ -29,11 +29,11 @@
       <svg
         v-if="
           isMobile() &&
-            !menuVisibility &&
-            (this.$route.name == 'map') |
-              (this.$route.name == 'calendar') |
-              (this.$route.name == 'habits') |
-              (this.$route.name == 'to-do')
+          !menuVisibility &&
+          (this.$route.name == 'map') |
+            (this.$route.name == 'calendar') |
+            (this.$route.name == 'habits') |
+            (this.$route.name == 'to-do')
         "
         xmlns="http://www.w3.org/2000/svg"
         width="30"
@@ -69,6 +69,7 @@ import { navigationMenuLocations } from "../router/consts";
 
 export default {
   components: { Menu },
+  emits: ["updatedcount,change-section"],
   methods: {
     log() {
       console.log(this.menuVisibility);

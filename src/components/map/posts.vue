@@ -1,9 +1,6 @@
 <template>
 <div class="p-2 flex-grow-1 bd-highlight">
-        <img
-          src="https://source.unsplash.com/1600x900/?travel,map,adventure"
-          style= "width:100%"
-        />
+      
   </div>
   <div v-for="(post, index) in marker.posts" :key="post" style="height: 100%; width: 200px; padding: 5px">
     <div class="form-control">

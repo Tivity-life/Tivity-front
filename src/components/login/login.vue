@@ -28,7 +28,9 @@
             />
           </div>
           Sei nuovo?
-          <router-link class="" to="/signUp" style="color: #bd2a3e">Crea il tuo account</router-link>
+          <router-link class="" to="/signUp" style="color: #bd2a3e"
+            >Crea il tuo account</router-link
+          >
           <br />
           <br />
           <div class="form-group">
@@ -57,7 +59,7 @@
 </template>
 
 <script>
-import { setCookie } from "../../utility/cookies";
+import { setCookie, getCookie } from "../../utility/cookies";
 import { navigationMenuLocations } from "../../router/consts";
 import { getUser } from "../../utility/user";
 
@@ -66,24 +68,32 @@ export default {
   emits: ["disable-menu", "user-data"],
   methods: {
     async tryTokenLogin() {
-      const user = (await getUser()); 
+      const user = await getUser();
       if (user) {
         this.$emit("user-data", user);
-        this.$router.push("homepage");
+
+        if (sessionStorage.getItem("first-login")) {
+          sessionStorage.removeItem("first-login");
+          this.$router.push("homepage");
+        } else {
+          const lastPosition = localStorage.getItem("/tivity/lastMapPosition");
+          console.log(lastPosition)
+          if (navigationMenuLocations.includes(lastPosition))
+            this.$router.push(lastPosition);
+          else this.$router.push("homepage");
+        }
       }
     },
     login() {
       const inputs = document.getElementsByTagName("input");
       const rememebr_login = inputs.rememebr_login.checked;
-      console.log("login")
 
       let userObj = {
         username: inputs.username.value,
-      }
+      };
 
-      sessionStorage.setItem('username', JSON.stringify(userObj));
+      sessionStorage.setItem("username", JSON.stringify(userObj));
 
-      
       fetch(process.env.VUE_APP_API_URL + "api/auth/signin", {
         method: "POST",
         mode: "cors",
@@ -106,14 +116,18 @@ export default {
             setCookie("tivityToken", user.accessToken, 1);
 
             if (rememebr_login) {
-              setCookie("tivityAutoLogin", rememebr_login, 1);
+              localStorage.setItem("tivityAutoLogin", rememebr_login);
             }
-                        console.log("login");
-
-            console.log(user);
             this.$emit("user-data", user);
           });
-          this.$router.push("homepage");
+          if (sessionStorage.getItem("first-login")) {
+            sessionStorage.removeItem("first-login");
+            this.$router.push("homepage");
+          } else {
+            const lastPosition = localStorage.getItem("/tivity/lastMapPosition");
+            if (navigationMenuLocations.includes(lastPosition)) this.$router.push(lastPosition);
+            else this.$router.push("/homepage");
+          }
         })
         .catch((err) => {
           console.log("Something went wrong", err);
@@ -124,9 +138,11 @@ export default {
     this.$emit("disable-menu");
     // If back after login do not login with token.
     const lastPosition = localStorage.getItem("/tivity/lastPosition");
-    console.log;
     if (!navigationMenuLocations.includes(lastPosition) && lastPosition) {
-      this.tryTokenLogin();
+      const agreeAutoLogin = localStorage.getItem("tivityAutoLogin");
+      if (agreeAutoLogin) {
+        this.tryTokenLogin();
+      }
     }
   },
 };
