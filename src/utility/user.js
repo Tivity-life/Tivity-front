@@ -1,13 +1,7 @@
 import { getCookie } from "./cookies";
 
 export async function getUser() {
-  const agreeAutoLogin = getCookie("tivityAutoLogin");
   const token = getCookie("tivityToken");
-
-
-  if (agreeAutoLogin == "false") {
-    return false;
-  }
 
   return await fetch(process.env.VUE_APP_API_URL + "api/user/getUser", {
     method: "GET",
