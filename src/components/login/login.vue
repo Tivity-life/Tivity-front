@@ -116,6 +116,7 @@ export default {
             setCookie("tivityToken", user.accessToken, 1);
 
             if (rememebr_login) {
+              console.log(rememebr_login)
               localStorage.setItem("tivityAutoLogin", rememebr_login);
             }
             this.$emit("user-data", user);
@@ -141,6 +142,7 @@ export default {
     if (!navigationMenuLocations.includes(lastPosition) && lastPosition) {
       const agreeAutoLogin = localStorage.getItem("tivityAutoLogin");
       if (agreeAutoLogin) {
+        console.log(agreeAutoLogin)
         this.tryTokenLogin();
       }
     }

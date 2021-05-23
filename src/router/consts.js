@@ -3,5 +3,5 @@ export const navigationMenuLocations = [
     "/to-do",
     "/map",
     "/calendar",
-    "/habit"
+    "/habits"
 ]

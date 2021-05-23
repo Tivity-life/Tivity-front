@@ -215,7 +215,7 @@ export default {
     
   emits: ["change-section"],
   created() {
-    this.$emit("change-section","/habit");
+    this.$emit("change-section","/habits");
   },
   el: "#habits",
 
