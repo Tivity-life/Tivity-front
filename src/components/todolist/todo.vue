@@ -442,6 +442,7 @@ export default {
 .app-title {
   font-weight: bold;
   font-size: 40px;
+  text-align: left;
 }
 .descr-todo {
   text-align: left;
