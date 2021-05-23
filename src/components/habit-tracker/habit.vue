@@ -193,7 +193,7 @@
       </tbody>
     </table>
 
-    <div class="opzioni">
+    <div class="opzioni" style="justify-content:left">
       <button type="button" class="btn btn-lg" @click="addNewRow">
         <i class="fas fa-plus-circle" style="color: #ffa700"></i>
         Inserisci una nuova riga
