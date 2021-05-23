@@ -200,7 +200,7 @@ export default {
         posLon: event.latlng.lng,
       };
 
-      fetch(process.env.VUE_APP_API_URL + "api/user/createMarker", {
+      fetch("http://localhost:8080/" + "api/user/createMarker", {
         method: "POST",
         mode: "cors",
         headers: {
@@ -223,6 +223,8 @@ export default {
     },
     removeMarker(index, markerId) {
       fetch(process.env.VUE_APP_API_URL + "api/user/removeMarker", {
+
+
         method: "POST",
         mode: "cors",
         headers: {
@@ -247,7 +249,7 @@ export default {
       const newPostValue = document.getElementById("addPostTextArea").value;
       if (newPostValue) {
         this.postsManager.addingPost = false;
-        fetch(process.env.VUE_APP_API_URL + "api/user/addPost", {
+        fetch("http://localhost:8080/" + "api/user/addPost", {
           method: "POST",
           mode: "cors",
           headers: {
@@ -272,7 +274,7 @@ export default {
     },
     deletePost(index, markerId) {
       if (confirm("Are you sure?")) {
-        fetch(process.env.VUE_APP_API_URL + "api/user/deletePost", {
+        fetch("http://localhost:8080/" + "api/user/deletePost", {
           method: "POST",
           mode: "cors",
           headers: {
@@ -349,4 +351,3 @@ figure {
   align-items: center;
 }
 </style>
-scoped

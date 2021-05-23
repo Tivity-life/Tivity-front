@@ -9,7 +9,7 @@
     <div class="cards-container">
       <div class="first-section">
         <router-link to="/to-do">
-          <div class="card" style="width: 30rem; height: 20rem">
+          <div class="card">
             <img
               class="card-img-top"
               src="../../assets/todolist.png"
@@ -28,7 +28,7 @@
 
       <div class="second-section">
         <router-link to="/map">
-          <div class="card" style="width: 30rem; height: 20rem">
+          <div class="card">
             <img
               class="card-img-top"
               src="../../assets/map_pins.jpg"
@@ -46,7 +46,7 @@
       </div>
       <div class="third-section">
         <router-link to="/calendar">
-          <div class="card" style="width: 30rem; height: 20rem">
+          <div class="card">
             <img
               class="card-img-top"
               src="../../assets/calendar.jpg"
@@ -64,7 +64,7 @@
       </div>
       <div class="fourth-section">
         <router-link to="/habits">
-          <div class="card" style="width: 30rem; height: 20rem">
+          <div class="card">
             <img
               class="card-img-top"
               src="../../assets/habit.jpg"
@@ -145,6 +145,7 @@ export default {
   display: flex;
   overflow: hidden;
   transition: 0.4s ease-out;
+  width: 30rem; height: 20rem;
 }
 .hover {
   background-color: rgba(0, 0, 0, 0.5);
@@ -189,5 +190,20 @@ export default {
 
 .card-img-top:hover {
   filter: grayscale(100%);
+}
+
+@media screen and (max-width: 630px) { 
+  .d-flex {
+    flex-direction: column;
+  }
+  .cards-container {
+    width:100%;
+    background-color: white;
+  }
+  .card {
+    width: 100%;
+    height: 100%;
+  }
+
 }
 </style>
