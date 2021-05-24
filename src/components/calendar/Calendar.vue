@@ -1,17 +1,17 @@
 /* eslint-disable */
 <template>
   <div class="calendar">
-    <div class="container" style="width: 60%; box-shadow: none!important;">
+    <div class="container" style="width: 100%; box-shadow: none !important">
       <div class="row">
         <div class="col-9">
           <div class="row">
             <div class="text" style="float: left; padding: 15px">
-              <h2 style="padding: 10px; text-align:center;">
+              <h2 style="padding: 10px; text-align: center">
                 Calendario <span style="font-size: 30px"> 📅</span>
               </h2>
             </div>
           </div>
-          <p style="text-align:center;" width="60%">
+          <p style="text-align: center" width="60%">
             Questo è il tuo calendario annuale. Clicca sui giorni, inserisci i
             tuoi impegni<br />
             e l'orario! Il giorno di oggi ha un colore diverso da tutti gli
@@ -19,7 +19,7 @@
           </p>
         </div>
         <div class="col-3">
-          <figure style="width: 100%">
+          <figure style="width: 70%">
             <img src="../../assets/use-case-wiki.png" />
           </figure>
         </div>
@@ -88,8 +88,9 @@
                       v-for="time in times"
                       :value="time"
                       v-bind:key="time"
-                      >{{ time }}</option
                     >
+                      {{ time }}
+                    </option>
                   </select>
                   <select
                     class="form-select"
@@ -101,8 +102,9 @@
                       v-for="time in times"
                       :value="time"
                       v-bind:key="time"
-                      >{{ time }}</option
                     >
+                      {{ time }}
+                    </option>
                   </select>
                   <div class="input-group-append">
                     <button
@@ -144,9 +146,7 @@ export default {
   },
   data() {
     return {
-      currentMonth: moment()
-        .locale(this.locale)
-        .startOf("month"),
+      currentMonth: moment().locale(this.locale).startOf("month"),
       weekDays: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"],
       leftArrow: "-",
       rightArrow: "+",
@@ -193,7 +193,7 @@ export default {
         },
         body: JSON.stringify(event),
       })
-        .then(res => {
+        .then((res) => {
           if (res.status !== 200) {
             return alert("Error, please try later");
           }
@@ -203,9 +203,9 @@ export default {
           this.selectedEndTime = "";
           this.creatingEventOn = false;
 
-          getEvents(this.user.id).then(events => (this.events = events));
+          getEvents(this.user.id).then((events) => (this.events = events));
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("Something went wrong", err);
         });
     },
@@ -217,16 +217,12 @@ export default {
     },
     goPrev() {
       this.changeMonth(
-        moment(this.currentMonth)
-          .subtract(1, "months")
-          .startOf("month")
+        moment(this.currentMonth).subtract(1, "months").startOf("month")
       );
     },
     goNext() {
       this.changeMonth(
-        moment(this.currentMonth)
-          .add(1, "months")
-          .startOf("month")
+        moment(this.currentMonth).add(1, "months").startOf("month")
       );
     },
   },
@@ -235,13 +231,13 @@ export default {
     this.changeMonth(this.currentMonth);
 
     if (this.$props.user) {
-      getEvents(this.$props.user.id).then(events => (this.events = events));
+      getEvents(this.$props.user.id).then((events) => (this.events = events));
     }
   },
   watch: {
     user(u) {
       console.log(u);
-      getEvents(u.id).then(events => (this.events = events));
+      getEvents(u.id).then((events) => (this.events = events));
     },
   },
   emits: ["change-section"],
@@ -336,7 +332,9 @@ p {
   background: pink;
   width: 100%;
   margin: 1px;
+  padding: 1px;
   border-radius: 12px;
+  font-size: 11px;
 }
 
 .eventNameCol {
@@ -351,7 +349,7 @@ p {
 }
 
 .eventNameInput {
-  font-size: 13px;
+  font-size: 11px;
   padding: 1px;
   margin: 2px;
 }
