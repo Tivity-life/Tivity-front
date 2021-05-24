@@ -61,7 +61,7 @@
                   {{ event.name }}
                 </div>
                 <div class="col eventTimeCol">
-                  {{ event.startTime }} - {{ event.endTime }}
+                  {{ event.startTime }}-{{ event.endTime }}
                 </div>
               </div>
               
