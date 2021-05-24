@@ -1,10 +1,10 @@
 <template>
-  <div class="container row" style="border-radius: 20px 20px 0% 0%">
-    <div class="text col" style="float: left; padding: 15px">
-      <h2 style="padding: 10px; text-align: center">
-        <span style="font-size: 25 px">🗺️</span> La mia mappa
+  <div class="container row rounded-top" style="width: 100%">
+    <div class="text col p-0">
+      <h2 class="p-2 text-center">
+        <span class="text-sm-center">🗺️</span> La mia mappa
       </h2>
-      <p style="text-align: center">
+      <p class="p-3 text-sm-center">
         Hai in mente tanti viaggi da fare in giro per il mondo? 🌎<br />
         Naviga nella mappa, gira il mondo e lascia dei
         <strong>pin</strong> sopra i luoghi che non puoi perdere!<br />Inserisci
@@ -15,6 +15,7 @@
       <figure><img src="../../assets/api.jpg" /></figure>
     </div>
   </div>
+
   <l-map
     v-if="!(isMenu && isMobile())"
     v-model:zoom="zoom"
@@ -44,13 +45,10 @@
             postsManager.addingPost ? 'visible' : 'd-none',
             'form-control',
           ]"
-          placeholder="Add a Note!"
+          placeholder="Aggiungi una nota!"
         />
 
-        <div
-          class="align-center"
-          style="height: 100%; width: 200px; padding: 5px"
-        >
+        <div class="align-center p-1" style="height: 100%; width: 200px">
           <!-- Add note button. -->
           <svg
             @click="
@@ -81,7 +79,7 @@
             ]"
             style="border-color: white; border-radius: 70px"
           >
-            Cancel
+            Cancella
           </button>
           <!-- Add post button. -->
           <button
@@ -93,7 +91,7 @@
             ]"
             style="float: right; border-color: white; border-radius: 70px"
           >
-            Add
+            Aggiungi
           </button>
           <button
             type="button"
@@ -313,19 +311,17 @@ export default {
       this.centLat = lat;
       this.centLon = lng;
     }
-
     this.updated = false;
-    if (this.$props.user.id) {
-      const markers = await getMarkers(this.$props.user.id);
-      this.markers = [];
-      for (const marker of markers) {
-        this.markers.push(marker);
-      }
+    const markers = await getMarkers(this.$props.user.id);
+    this.markers = [];
+    for (const marker of markers) {
+      this.markers.push(marker);
     }
+
     this.$emit("change-section", "/map");
   },
   async updated() {
-    this.isMenu = this.$props.isMenu;
+    if (this.$props.isMenu) this.isMenu = this.$props.isMenu;
 
     if (this.$props.user.id && !this.updated) {
       const markers = await getMarkers(this.$props.user.id);
@@ -335,6 +331,17 @@ export default {
       }
       this.updated = true;
     }
+    this.$emit("change-section", "/map");
+  },
+  watch: {
+    async user(u) {
+      console.log(u.id);
+      const markers = await getMarkers(u.id);
+      this.markers = [];
+      for (const marker of markers) {
+        this.markers.push(marker);
+      }
+    },
   },
 };
 </script>
@@ -349,6 +356,10 @@ export default {
 .map {
   height: 100%;
   width: 100%;
+}
+
+.rounded-top {
+  border-radius: 20px 20px 0% 0%;
 }
 
 figure {
