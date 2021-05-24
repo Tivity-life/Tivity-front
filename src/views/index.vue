@@ -52,6 +52,7 @@
 
       <router-view
         :user="user"
+        :isMenu="menuVisibility"
         @user-data="getUserData"
         @change-section="changeSection"
       ></router-view>

@@ -16,9 +16,10 @@
     </div>
   </div>
   <l-map
+    v-if="!(isMenu && isMobile())"
     v-model:zoom="zoom"
     :center="[centLat, centLon]"
-    style="height: 100%; width: 100%"
+    class="map"
     @click="addMarker"
   >
     <l-tile-layer
@@ -140,7 +141,7 @@ export default {
     Posts,
     LPopup,
   },
-  props: ["user"],
+  props: ["user", "isMenu"],
   data() {
     return {
       zoom: 6,
@@ -223,8 +224,6 @@ export default {
     },
     removeMarker(index, markerId) {
       fetch(process.env.VUE_APP_API_URL + "api/user/removeMarker", {
-
-
         method: "POST",
         mode: "cors",
         headers: {
@@ -271,6 +270,11 @@ export default {
             console.log("Something went wrong", err);
           });
       }
+    },
+    isMobile() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
     },
     deletePost(index, markerId) {
       if (confirm("Are you sure?")) {
@@ -321,6 +325,8 @@ export default {
     this.$emit("change-section", "/map");
   },
   async updated() {
+    this.isMenu = this.$props.isMenu;
+
     if (this.$props.user.id && !this.updated) {
       const markers = await getMarkers(this.$props.user.id);
       this.markers = [];
@@ -338,6 +344,10 @@ export default {
   border-color: black;
 }
 .container {
+  width: 100%;
+}
+.map {
+  height: 100%;
   width: 100%;
 }
 
