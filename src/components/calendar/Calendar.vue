@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <hr>
+    <hr />
     <div class="full-calendar-header">
       <div class="header-center">
         <span class="prev-month" @click.stop="goPrev">{{ leftArrow }}</span>
@@ -60,10 +60,11 @@
                 <div class="col eventNameCol">
                   {{ event.name }}
                 </div>
-                <div class="col">
+                <div class="col eventTimeCol">
                   {{ event.startTime }} - {{ event.endTime }}
                 </div>
               </div>
+              
               <div
                 v-if="creatingEventOn && creatingEventOn == day.target"
                 @close="creatingEventOn = false"
@@ -81,6 +82,7 @@
                     class="form-select"
                     aria-label="Start"
                     v-model="selectedStartTime"
+                    v-bind:style= "[selectedStartTime !== '' ? {'background': 'white'} : {}]"
                   >
                     <option
                       v-for="time in times"
@@ -93,6 +95,7 @@
                     class="form-select"
                     aria-label="End"
                     v-model="selectedEndTime"
+                    v-bind:style= "[selectedEndTime !== '' ? {'background': 'white'} : {}]"
                   >
                     <option
                       v-for="time in times"
@@ -338,6 +341,13 @@ p {
 
 .eventNameCol {
   font-weight: bold;
+  padding-right: 1px; 
+  padding-left: 4px; 
+}
+
+.eventTimeCol {
+  padding-right: 0px; 
+  padding-left: 0px; 
 }
 
 .eventNameInput {
@@ -360,6 +370,7 @@ p {
   padding-bottom: 2px;
   padding-right: 5px;
   padding-left: 5px;
+  direction: rtl; 
 }
 
 .secondRowEventInput .input-group-append button {
