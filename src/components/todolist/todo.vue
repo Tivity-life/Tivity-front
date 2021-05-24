@@ -56,7 +56,7 @@
             v-on:click="
               (showUndone = true), (showDone = false), (showAll = false),  localRadioButton('inlineRadio1')
             "
-            :checked ="showUnone ? true : false"
+            :checked ="showUndone ? true : false"
           />
           Mostra solo le cose non fatte
         </div>
