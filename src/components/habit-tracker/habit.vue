@@ -363,6 +363,8 @@ export default {
     updateChart(i) {
       var str = this.weekDays[i].insert;
       var val = this.countActive(i);
+      this.weekDays[i].n = val;
+      this.updateWeekDay(this.weekDays[i]);
       var app = [[str, val]];
       var list = this.union(app, this.datachart);
       this.datachart = list;
