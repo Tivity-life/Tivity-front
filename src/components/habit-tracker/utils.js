@@ -1,6 +1,6 @@
-export async function getTodos(userId) {
+export async function getHabits(userId) {
   return await fetch(
-    process.env.VUE_APP_API_URL + "api/user/getTodos?userId=" + userId,
+    process.env.VUE_APP_API_URL + "api/user/getHabits?userId=" + userId,
     {
       method: "GET",
       mode: "cors",
