@@ -1,18 +1,31 @@
 /* eslint-disable */
 <template>
-<div class="container" style= "width: 100%; border-radius: 20px 20px 0% 0%">
-    <div class="text" style="float: left; padding: 15px">
-      <h2 style="padding: 10px; text-align:center;">Calendario <span style="font-size: 30px"> 📅</span></h2>
-      <p style="text-align:center;">
-        Questo è il tuo calendario annuale. Clicca sui giorni, inserisci i tuoi impegni<br>
-        e l'orario! Il giorno di oggi ha un colore diverso da tutti gli altri: riesci a vedere qual è?
-      </p>
-    </div>
-     <div>
-      <figure style="width: 15%"><img src="../../assets/use-case-wiki.png" /></figure>
-    </div>
-  </div>
   <div class="calendar">
+    <div class="container" style="width: 60%; box-shadow: none!important;">
+      <div class="row">
+        <div class="col-9">
+          <div class="row">
+            <div class="text" style="float: left; padding: 15px">
+              <h2 style="padding: 10px; text-align:center;">
+                Calendario <span style="font-size: 30px"> 📅</span>
+              </h2>
+            </div>
+          </div>
+          <p style="text-align:center;" width="60%">
+            Questo è il tuo calendario annuale. Clicca sui giorni, inserisci i
+            tuoi impegni<br />
+            e l'orario! Il giorno di oggi ha un colore diverso da tutti gli
+            altri: riesci a vedere qual è?
+          </p>
+        </div>
+        <div class="col-3">
+          <figure style="width: 100%">
+            <img src="../../assets/use-case-wiki.png" />
+          </figure>
+        </div>
+      </div>
+    </div>
+    <hr>
     <div class="full-calendar-header">
       <div class="header-left">
         <slot name="header-left"> </slot>
@@ -115,11 +128,7 @@
 
 <script>
 import moment from "moment";
-import {
-  getDates,
-  getEvents,
-  getTimes
-} from "./utils.js";
+import { getDates, getEvents, getTimes } from "./utils.js";
 
 export default {
   name: "Calendar",
@@ -246,7 +255,6 @@ export default {
 </script>
 
 <style>
-
 .calendar {
   padding: 20px;
   background: #fff;
@@ -287,7 +295,7 @@ p {
 
 .day-cell {
   flex: 1;
-  min-height: 180px;
+  min-height: 150px;
   padding: 4px;
   border-right: 1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
