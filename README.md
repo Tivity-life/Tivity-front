@@ -1,4 +1,4 @@
-# tivity
+# Tivity.Me: scrivi, pianifica e semplifica la tua vita
 
 ## Project setup
 ```
