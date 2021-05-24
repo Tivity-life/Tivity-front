@@ -54,8 +54,9 @@
             id="inlineRadio1"
             value="option1"
             v-on:click="
-              (showUndone = true), (showDone = false), (showAll = false)
+              (showUndone = true), (showDone = false), (showAll = false),  localRadioButton('inlineRadio1')
             "
+            :checked ="showUnone ? true : false"
           />
           Mostra solo le cose non fatte
         </div>
@@ -67,8 +68,9 @@
             id="inlineRadio2"
             value="option2"
             v-on:click="
-              (showDone = true), (showUndone = false), (showAll = false)
+              (showDone = true), (showUndone = false), (showAll = false), localRadioButton('inlineRadio2')
             "
+            :checked ="showDone ? true : false"
           />
           Mostra solo le cose fatte
         </div>
@@ -80,8 +82,9 @@
             id="inlineRadio3"
             value="option3"
             v-on:click="
-              (showAll = true), (showDone = false), (showUndone = false)
+              (showAll = true), (showDone = false), (showUndone = false), localRadioButton('inlineRadio3')
             "
+            :checked ="showAll ? true : false"
           />
           Mostra tutto
         </div>
@@ -91,9 +94,9 @@
           <input
             class="form-check-input"
             type="radio"
-            name="inlineRadioOptions"
-            id="inlineRadio1"
-            value="option1"
+            name="inlineRadioOptionsDisabled"
+            id="inlineRadio1Disabled"
+            value="option1Disabled"
             disabled
           />Mostra solo le cose non fatte
         </div>
@@ -101,9 +104,9 @@
           <input
             class="form-check-input"
             type="radio"
-            name="inlineRadioOptions"
-            id="inlineRadio2"
-            value="option2"
+            name="inlineRadioOptionsDisabled"
+            id="inlineRadio2Disabled"
+            value="option2Disabled"
             disabled
           />Mostra solo le cose fatte
         </div>
@@ -111,9 +114,9 @@
           <input
             class="form-check-input"
             type="radio"
-            name="inlineRadioOptions"
-            id="inlineRadio3"
-            value="option3"
+            name="inlineRadioOptionsDisabled"
+            id="inlineRadio3Disabled"
+            value="option3Disabled"
             disabled
           />Mostra tutto
         </div>
@@ -271,6 +274,12 @@ export default {
     };
   },
   methods: {
+     localRadioButton(radio) { 
+      var input = document.getElementById(radio).value;
+      localStorage.setItem("radio_button", JSON.stringify(input));
+      console.log(this.showUndone, this.showDone, this.showAll)
+    },
+
     isMobile() {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         navigator.userAgent
@@ -425,6 +434,24 @@ export default {
     if (this.$props.user) {
       getTodos(this.$props.user.id).then(todos => (this.todos = todos));
     }
+    //salvataggio in localstorage degli stati dei radio button
+    var val = localStorage.getItem('radio_button');
+    console.log(val)
+    if (val == '"option1"') {
+      this.showUndone= true;
+      this.showDone= false;
+      this.showAll = false;
+    }
+    else if (val == '"option2"') {
+      this.showDone = true;
+      this.showUndone = false;
+      this.showAll = false;
+    }
+    else if (val == '"option3"') {
+      this.showAll = true;
+      this.showUndone = false;
+      this.showDone= false;
+    }
   },
   watch: {
     user(u) {
@@ -453,6 +480,7 @@ export default {
 p {
   text-align: center;
 }
+
 input[type="text"] {
   width: 100%;
   padding: 10px;
