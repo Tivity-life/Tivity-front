@@ -340,12 +340,14 @@ p {
 .eventNameCol {
   font-weight: bold;
   padding-right: 1px; 
-  padding-left: 4px; 
+  padding-left: 5px; 
 }
 
 .eventTimeCol {
-  padding-right: 0px; 
+  padding-right: 5px; 
   padding-left: 0px; 
+  position: relative;
+  text-align: right;
 }
 
 .eventNameInput {
