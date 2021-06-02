@@ -1,5 +1,5 @@
 <template>
-  <div :class="[menuVisibility ? 'sidebar true' : 'd-none']">
+  <div :class="[menuVisibility ? 'sidebar fixed' : 'd-none']">
     <Menu
       @close-menu="menuVisibility = false"
       :username="user ? user.username : ''"
@@ -8,12 +8,13 @@
 
   <div
     :class="[
-      menuVisibility
-        ? 'd-flex  '
-        : 'd-flex justify-content-center align-items-stretch',
+      menuVisibility ? '' : 'justify-content-center align-items-stretch',
     ]"
+    class="d-flex"
   >
-    <div :class="[menuVisibility ? 'sidebar flex-column ' : 'd-none']"></div>
+    <div :class="[menuVisibility ? 'sidebar flex-column ' : 'd-none']">
+      <!-- This div is used to align correctly (has the position of the fixed sidebar) -->
+    </div>
 
     <div
       :class="[
@@ -26,6 +27,7 @@
       class="flex-column m"
       :style="[menuVisibility ? 'max-width: 78%;' : '']"
     >
+    <!-- Icon than show menu in mobile devices -->
       <svg
         v-if="
           isMobile() &&
@@ -112,7 +114,7 @@ export default {
 </script>
 
 <style>
-.true {
+.fixed {
   position: fixed;
 }
 
